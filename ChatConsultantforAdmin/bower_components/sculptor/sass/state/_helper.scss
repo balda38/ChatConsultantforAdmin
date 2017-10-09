@@ -1,0 +1,125 @@
+// ==============================================
+//                  Text
+// ==============================================
+.textWhite {
+  color: $niceWhite;
+}
+.textBlack{
+  color: $niceBlack;
+}
+.textCenter {
+  text-align: center;
+}
+
+.textRight {
+  text-align: right;
+}
+
+.textJustify {
+  text-align: justify;
+}
+
+// ==============================================
+//               Float things
+// ==============================================
+
+.floatRight,
+.right{
+  float: right;
+}
+
+.floatLeft,
+.left{
+  float: left;
+}
+
+// ==============================================
+//            Responsive things
+// ==============================================
+
+img.responsive,
+video.responsive{
+  max-width: 100%;
+  height: auto;
+}
+
+// ==============================================
+//              Hide Things
+// ==============================================
+
+@media #{$smallAndDown} {
+  .hideOnSmall {
+    display: none !important;
+  }
+}
+
+@media #{$mediumAndDown} {
+  .hideOnMediumAndDown{
+    display: none !important;
+  }
+}
+
+@media #{$mediumOnly} {
+  .hideOnMedium{
+    display: none !important;
+  }
+}
+
+@media #{$mediumAndUp} {
+  .hideOnMediumAndUp{
+    display: none !important;
+  }
+}
+
+@media #{$largeAndUp} {
+  .hideOnLarge{
+    display: none !important;
+  }
+}
+
+// ==============================================
+//              Screen sizes
+// ==============================================
+
+.screenHeight{
+  height: 100vh;
+}
+.screenWidth{
+  width: 100vw;
+}
+
+// ==============================================
+//              Aligner
+// ==============================================
+.aligner{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & .center{
+    align-self: center;
+  }
+  & .top{
+    align-self: flex-start;
+  }
+  & .bottom{
+    align-self: flex-end;
+  }
+}
+
+// ==============================================
+//              Modifies
+// ==============================================
+
+.radiusNone{
+  border-radius: $radiusNone;
+}
+.radiusLight{
+  border-radius: $radiusLight;
+}
+.radiusFit{
+  border-radius: $radiusFit;
+}
+.radiusFat{
+  border-radius: $radiusFat;
+}
