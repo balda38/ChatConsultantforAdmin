@@ -56,8 +56,10 @@
     opacity: 1;
 }
 .enter-button{
+    box-sizing: content-box;
+    width: 20%;
 	color: #000000;
-	padding: .5em 2em;
+	padding: .5em;
 	border: 1px solid #A0A9B1;
 	border-radius: 6px;
 	background: #D8D5D5;

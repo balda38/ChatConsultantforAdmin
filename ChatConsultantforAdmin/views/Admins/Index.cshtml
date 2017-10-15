@@ -8,8 +8,8 @@
 
 <html>
 <head>
-    <link rel="stylesheet" href="../bower_components/sculptor/css/sculptor.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../bower_components/sculptor/css/sculptor.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
     <div class="video-background">
@@ -27,7 +27,8 @@
                 <br><br>
                 <input type="password" id="password" placeholder="Пароль">
                 <br><br>
-                <button class="enter-button" onClick="userEnter()">Ввод</button>
+                <button class="enter-button" onClick="userEnter()">Вход</button>
+                <a href="~/Admins/Create" class="enter-button">Регистрация</a>
             </div>
         </div>
     </div>    
@@ -60,7 +61,7 @@
             }
             else {
                 window.alert("Неверный логин или пароль");
-            };
+            };        
         };
     </script>
 </body>
