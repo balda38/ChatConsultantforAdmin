@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../../bower_components/sculptor/css/sculptor.css">
     <link rel="stylesheet" href="../../css/style.css">
 </head>
-<body>
+<body onload="uprisePopup()">
     <div class="video-background">
         <video width="1600" height="900" autoplay="autoplay" loop="loop" preload="auto">
             <source src="../videos/office_people.mp4" type="video/mp4">
@@ -19,7 +19,7 @@
     </div>
     <div id="popup" class="hide-popup">
         <div class="popup">
-            <div class="popup-content">
+            <div id="content" class="popup-content">
                 Авторизуйтесь в качестве администратора
                 ChatConsultant
                 <br><br>
@@ -27,41 +27,79 @@
                 <br><br>
                 <input type="password" id="password" placeholder="Пароль">
                 <br><br>
-                <button class="enter-button" onClick="userEnter()">Вход</button>
-                <a href="~/Admins/Create" class="enter-button">Регистрация</a>
+                <button class="popup-button" onClick="userEnter()">Вход</button>
+                <button class="popup-button" onClick="switchPopup(1)">Регистрация</button>
             </div>
         </div>
-    </div>    
+    </div>
+     
     <script src="../bower_components/angular/angular.min.js"></script>
 
     <script type="text/javascript">
         var popup = document.getElementById("popup");
+        var content = document.getElementById("content");
 
-        window.setTimeout(function() {
-           popup.setAttribute("class", "hide-popup show-popup");
-        }, 500);
+        var uprisePopup = function () {
+            window.setTimeout(function () {
+                popup.setAttribute("class", "hide-popup show-popup");
+            }, 800);
+        };
+
+        function switchPopup(popupNum) {
+            switch(popupNum){
+                case 1:
+                    popup.setAttribute("class", "hide-popup");
+                    window.setTimeout(function () {
+                        content.innerHTML = 'Зарегистрируйтесь в качестве администратора\n\
+                        ChatConsultant\n\
+                        <br><br>\n\
+                        <input type="text" id="login" placeholder="Логин">\n\
+                        <br><br>\n\
+                        <input type="password" id="password" placeholder="Пароль">\n\
+                        <br><br>\n\
+                        <button class="popup-button" onClick="switchPopup(2)">Назад</button>\n\
+                        <button class="popup-button" onClick="">Регистрация</button>';
+                    }, 800);
+                    uprisePopup();
+                    break;
+                case 2:
+                    popup.setAttribute("class", "hide-popup");
+                    window.setTimeout(function () {
+                        content.innerHTML = 'Авторизуйтесь в качестве администратора\n\
+                        ChatConsultant\n\
+                        <br><br>\n\
+                        <input type="text" id="login" placeholder="Логин">\n\
+                        <br><br>\n\
+                        <input type="password" id="password" placeholder="Пароль">\n\
+                        <br><br>\n\
+                        <button class="popup-button" onClick="userEnter()">Вход</button>\n\
+                        <button class="popup-button" onClick="switchPopup(1)">Регистрация</button>';
+                    }, 800);
+                    uprisePopup();
+                    break;
+            }
+        };
 
         function userEnter() {
             var login = document.getElementById("login").value;
             var password = document.getElementById("password").value;
-
-            var logins = [];
-            var passwords = []
+            var checked = false;
 
             @foreach (var item in Model)
             {
                 <text>
-                    logins.push("@item.login");
-                    passwords.push("@item.password");
+                if (("@item.login" == login) && ("@item.password" == password))
+                    {
+                        checked = true;
+                        sessionStorage.setItem("admin", login);
+                        document.location.href = '@Url.Content("~/Clients/Index/")';
+                    }
                 </text>
             }
 
-            if ((logins.indexOf(login) != -1) && (passwords.indexOf(password) != -1)) {
-                document.location.href = "../dialogs.html";
-            }
-            else {
+            if (checked == false){
                 window.alert("Неверный логин или пароль");
-            };        
+            };
         };
     </script>
 </body>

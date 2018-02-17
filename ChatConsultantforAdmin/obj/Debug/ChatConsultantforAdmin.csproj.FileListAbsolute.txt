@@ -28,7 +28,6 @@ F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Microso
 F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Microsoft.AI.WindowsServer.xml
 F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Microsoft.ApplicationInsights.xml
 F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\obj\Debug\ChatConsultantforAdmin.csprojResolveAssemblyReference.cache
 F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\obj\Debug\ChatConsultantforAdmin.dll
 F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\obj\Debug\ChatConsultantforAdmin.pdb
 F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\EntityFramework.dll
@@ -55,3 +54,15 @@ F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\System.
 F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\System.Web.WebPages.xml
 F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\System.Web.WebPages.Deployment.xml
 F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\System.Web.WebPages.Razor.xml
+F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Microsoft.AspNet.SignalR.Core.dll
+F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Microsoft.Owin.dll
+F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Microsoft.Owin.Host.SystemWeb.dll
+F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Microsoft.Owin.Security.dll
+F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Owin.dll
+F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Microsoft.AspNet.SignalR.Core.xml
+F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Microsoft.Owin.xml
+F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Microsoft.Owin.Host.SystemWeb.xml
+F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Microsoft.Owin.Security.xml
+F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\obj\Debug\ChatConsultantforAdmin.csprojResolveAssemblyReference.cache

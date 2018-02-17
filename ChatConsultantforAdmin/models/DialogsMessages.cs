@@ -5,11 +5,12 @@ using System.Web;
 
 namespace ChatConsultantforAdmin.models
 {
-    public class Messages
+    public class DialogsMessages
     {
-        public int Id { get; set; }
+        public int id { get; set; }
         public string msgText { get; set; }
         public string msgFrom { get; set; }
         public string msgTo { get; set; }
+        public DateTime date { get; set; }
     }
 }

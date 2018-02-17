@@ -6,12 +6,17 @@
 <body>
     <div class="page-body">
         Пользователь:
-        <br><br>
-        <textarea class="message-field"></textarea>
-        <br><br>
-        <input type="submit" value="Отправить сообщение">
+        <div ng-app="chatConsultantForAdmin">
+            <chat-directive></chat-directive>
+        </div>
     </div>
 
     <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="../scripts/jquery-1.10.2.min.js"></script>
+    <script src="../scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="../signalr/hubs"></script>
+    <script src="../scripts/serverInt.js"></script>
+
+    <script src="bower_components/requirejs/require.js" data-main="js/main"></script>	
 </body>
 </html>

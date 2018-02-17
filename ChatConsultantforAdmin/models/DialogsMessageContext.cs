@@ -6,11 +6,11 @@ using System.Data.Entity;
 
 namespace ChatConsultantforAdmin.models
 {
-    public class MessageContext : DbContext
+    public class DialogsMessageContext : DbContext
     {
-        public MessageContext() : base("DbConnection")
+        public DialogsMessageContext() : base("DbConnection")
         { }
 
-        public DbSet<Messages> Messages { get; set; }
+        public DbSet<DialogsMessages> DialogsMessages { get; set; }
     }
 }
