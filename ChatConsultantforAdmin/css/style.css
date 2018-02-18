@@ -114,7 +114,7 @@
     text-align: left;
 }
 
-.chat-frame iframe{		
+.chat-frame{		
 	box-sizing: border-box;
     border: 1px solid #A0A9B1;
     position: absolute;

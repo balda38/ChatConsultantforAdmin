@@ -2,7 +2,7 @@
 define(function () {
     var directiveModule = angular.module('chatDirective', []);
 
-    directiveModule.directive('chatDirective', function () {
+    directiveModule.directive('chatDirective', function (selectUserFac) {
         return {
             restrict: 'EACM',
             template:
@@ -18,17 +18,29 @@ define(function () {
                 var chatWindow = document.getElementById('chat2');
                 $scope.userName = undefined;
 
+                var data = {
+                    msgText: undefined,
+                    msgFrom: sessionStorage.getItem('admin'),
+                    msgTo: undefined
+                }               
+
+                $scope.$on('msgToEvent', function () {
+                    data.msgTo = selectUserFac.user;                
+                })
+                
                 $scope.sendMessage = function (e) {
                     if (e.keyCode == 13) {
                         e.preventDefault();
                         if (msg.value != "") {  
+                            data.msgText = msg.value;
+
                             var config = {
                                 headers: {
                                     'Content-Type': 'application/json'
                                 }
                             }
-
-                            $http.post('/Messages/AddMessage', { messageText: msg.value, messageFrom: "admin", messageTo: "hello" }, config)
+                           
+                            $http.post('/Messages/AddMessage', { messageText: data.msgText, messageFrom: data.msgFrom, messageTo: data.msgTo }, config)
                                 .then(function (success) {
                                   successFn();
                               }, function (error) {

@@ -25,7 +25,7 @@ namespace ChatConsultantforAdmin.controllers
             msg.msgText = messageText;
             msg.msgFrom = messageFrom;
             msg.msgTo = messageTo;
-            string dateFormat = "dd.MM.yyyy hh:mm:ss";
+            string dateFormat = "dd.MM.yyyy HH:mm:ss";
             msg.date = DateTime.Parse(DateTime.Now.ToString(dateFormat));
 
             db.DialogsMessages.Add(msg);

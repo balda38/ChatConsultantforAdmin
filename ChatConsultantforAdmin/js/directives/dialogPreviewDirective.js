@@ -2,12 +2,12 @@
 define(function () {
     var directiveModule = angular.module('dialogPreviewDirective', []);
 
-    directiveModule.directive('dialogPreviewDirective', function () {
+    directiveModule.directive('dialogPreviewDirective', function (selectUserFac) {
         var uID = 0;
         return {
             restrict: 'EACM',
             template:				
-                "<div class='user-dialog-preview'>" +
+                "<div class='user-dialog-preview' ng-click='selectUser()'>" +
                     "<div class='circle-user-avatar' id='avatarCircle'><span class='avatar-name'>{{userNameFirstLetter}}</span></div> " +
                     "<span class='dialog-user-name'>{{userName}}</span>" +
                     "<span class='dialog-date'>Последнее сообщение: <br> {{lastMsgDT}}</span>" +
@@ -18,6 +18,10 @@ define(function () {
             },
             controller: function ($scope, $attrs) {
                 $scope.userNameFirstLetter = $scope.userName.charAt(0);
+
+                $scope.selectUser = function(){
+                    selectUserFac.setUser($scope.userName);
+                }
             },
             link: function (scope, element, attrs) {
                 uID += 1;
