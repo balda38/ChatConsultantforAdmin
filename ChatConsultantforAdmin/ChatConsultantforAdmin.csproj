@@ -240,6 +240,7 @@
     <Compile Include="models\AdminContext.cs" />
     <Compile Include="models\Clients.cs" />
     <Compile Include="models\ClientsContext.cs" />
+    <Compile Include="models\CombiModel.cs" />
     <Compile Include="models\DialogsMessages.cs" />
     <Compile Include="models\DialogsMessageContext.cs" />
     <Compile Include="models\UserContext.cs" />
