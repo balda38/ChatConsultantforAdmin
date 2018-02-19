@@ -18,19 +18,28 @@ namespace ChatConsultantforAdmin.controllers
         {
             return View(db.DialogsMessages.ToList());
         }
+
         [HttpPost]
         public JsonResult AddMessage(string messageText, string messageFrom, string messageTo)
         {
-            DialogsMessages msg = new DialogsMessages();
-            msg.msgText = messageText;
-            msg.msgFrom = messageFrom;
-            msg.msgTo = messageTo;
-            string dateFormat = "dd.MM.yyyy HH:mm:ss";
-            msg.date = DateTime.Parse(DateTime.Now.ToString(dateFormat));
+            //DialogsMessages msg = new DialogsMessages();
+            //msg.msgText = messageText;
+            //msg.msgFrom = messageFrom;
+            //msg.msgTo = messageTo;
+            //string dateFormat = "dd.MM.yyyy HH:mm:ss";
+            //msg.date = DateTime.Parse(DateTime.Now.ToString(dateFormat));
 
-            db.DialogsMessages.Add(msg);
-            db.SaveChanges();
+            //db.DialogsMessages.Add(msg);
+            //db.SaveChanges();
             return Json(new { status = "Ok" });
+        }
+
+        [HttpGet]
+        public JsonResult SetClient(string client)
+        {
+            var clientMessages = db.DialogsMessages.Where(x => x.msgTo == client).ToList();
+
+            return Json(clientMessages, JsonRequestBehavior.AllowGet);
         }
     }
 }

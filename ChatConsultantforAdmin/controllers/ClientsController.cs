@@ -17,6 +17,6 @@ namespace ChatConsultantforAdmin.controllers
         public ActionResult Index()
         {
             return View(db.Clients.ToList());
-        }
+        }        
     }
 }
