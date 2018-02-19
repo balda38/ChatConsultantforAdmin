@@ -114,6 +114,15 @@
     text-align: left;
 }
 
+.chat-frame{		
+	box-sizing: border-box;
+    border: 1px solid #A0A9B1;
+    position: absolute;
+    left: 20%;
+    top: 5px;
+    height: 800px;
+    width: 80%;
+}
 .chat-with-user {
     opacity: 1;
     position: absolute;

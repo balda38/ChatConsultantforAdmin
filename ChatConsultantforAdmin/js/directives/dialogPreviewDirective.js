@@ -16,33 +16,12 @@ define(function () {
                 userName: '@',
 				lastMsgDT: '@'
             },
-            controller: function ($scope, $attrs, $http) {
+            controller: function ($scope, $attrs) {
                 $scope.userNameFirstLetter = $scope.userName.charAt(0);
 
                 $scope.selectUser = function(){
                     selectUserFac.setUser($scope.userName);
-
-                    var config = {
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    }
-                   
-                    $http.post('/Clients/SelectClient', { client: $scope.userName }, config)
-                        .then(function (success) {
-                          successFn();
-                      }, function (error) {
-                          errorFn();
-                      });
                 }
-
-                function successFn() {
-                    console.log("success");
-                };
-
-                function errorFn() {
-                    console.log("error");
-                };
             },
             link: function (scope, element, attrs) {
                 uID += 1;

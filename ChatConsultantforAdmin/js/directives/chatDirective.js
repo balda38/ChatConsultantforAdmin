@@ -6,6 +6,10 @@ define(function () {
         return {
             restrict: 'EACM',
             template:
+                "<div id='chat2' class='chat-with-user'>" +
+					"<ul id='messages' class='clear'>" +
+					"</ul>" +
+                "</div>" +
                 "<textarea ng-keydown='sendMessage($event)' id='userMessage' type='text' class='chat-input' placeholder='Введите ваше сообщение здесь и нажмите Enter...' ></textarea>",           
             scope: {},
             controller: function ($scope, $attrs, $http) {
@@ -13,8 +17,6 @@ define(function () {
                 var ul = document.getElementById('messages');
                 var chatWindow = document.getElementById('chat2');
                 $scope.userName = undefined;
-
-                scrollToDown();
 
                 var data = {
                     msgText: undefined,
@@ -44,7 +46,10 @@ define(function () {
                               }, function (error) {
                                   errorFn();
                               });
-                        };                        
+                        };
+                        if (chatWindow.scrollHeight != 0) {
+                            chatWindow.scrollTo(0, chatWindow.scrollHeight);
+                        };
                     };
                 };
 
@@ -59,20 +64,12 @@ define(function () {
                     ul.appendChild(br);
                     msg.value = "";
 
-                    scrollToDown();
-
                     console.log("success");
                 };
 
                 function errorFn() {
                     console.log("error");
                 };
-
-                function scrollToDown() {
-                    if (chatWindow.scrollHeight != 0) {
-                        chatWindow.scrollTo(12, chatWindow.scrollHeight);
-                    };
-                }
             },
             link: function (scope, element, attrs) {
             }
