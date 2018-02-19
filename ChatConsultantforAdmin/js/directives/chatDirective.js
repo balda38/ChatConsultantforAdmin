@@ -37,18 +37,8 @@ define(function () {
                         .then(function (response) {
                             ul.innerHTML = "";
                             response.data.forEach(function (item, i, arr) {
-                                var li = document.createElement('li');
-                                var br = document.createElement('br');
-                                br.setAttribute('style', 'clear: both');
-                                li.setAttribute('class', 'admin-message-cloud');
-                                li.appendChild(document.createTextNode(item.msgText));
-                                ul.appendChild(li);
-                                ul.appendChild(br);
-                                ul.appendChild(br);
-                            });
-                            for (var item in messages) {
-                                
-                            }
+                                updateList(item.msgText, item.date);                               
+                            });                            
                         }, function (error) {
                             errorFn();
                         });                    
@@ -61,9 +51,11 @@ define(function () {
                         e.preventDefault();
                         if (msg.value != "") {  
                             data.msgText = msg.value;                            
-                           
+                           console.log(data.msgTo);
                             $http.post('/Messages/AddMessage', { messageText: data.msgText, messageFrom: data.msgFrom, messageTo: data.msgTo }, config)
-                                .then(function (success) {
+                                .then(function (response) {
+                                    selectUserFac.setLastMessage(toJavaScriptDate(response.data));
+
                                     successPostMessageFn();
                               }, function (error) {
                                   errorFn();
@@ -72,15 +64,44 @@ define(function () {
                     };
                 };
 
-                function successPostMessageFn() {
+                function updateList(text, date) {
                     var li = document.createElement('li');
                     var br = document.createElement('br');
-                    br.setAttribute('style', 'clear: both');
+                    var span = document.createElement('span');
                     li.setAttribute('class', 'admin-message-cloud');
-                    li.appendChild(document.createTextNode(msg.value));
+                    br.setAttribute('style', 'clear: both');
+                    li.appendChild(document.createTextNode(text));
                     ul.appendChild(li);
                     ul.appendChild(br);
+                    span.innerHTML = toJavaScriptDate(date);
+                    span.setAttribute('style', 'clear: both');
+                    span.setAttribute('class', 'message-date');
+                    ul.appendChild(span);
                     ul.appendChild(br);
+                }
+
+                function toJavaScriptDate(value) {
+                    var dt = undefined;
+                    var regexp = /Date\(([^)]+)\)/;
+
+                    if (typeof value == "string") {
+                        var results = regexp.exec(value);
+                        dt = new Date(parseFloat(results[1]));
+                    }
+                    else {
+                        dt = value;
+                    }
+
+                    return addZeros(dt.getHours()) + ":" + addZeros(dt.getMinutes()) + ":" + addZeros(dt.getSeconds()) + " " + addZeros(dt.getDate()) + "." + addZeros((dt.getMonth() + 1)) + "." + dt.getFullYear();
+                }
+
+                function addZeros(dateComponent) {
+                    if (dateComponent < 10) return '0' + dateComponent;
+                    else return dateComponent;
+                }
+
+                function successPostMessageFn() {                    
+                    updateList(msg.value, new Date());
                     msg.value = "";
 
                     scrollToDown();

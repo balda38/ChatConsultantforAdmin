@@ -113,6 +113,16 @@
     color: #A0A9B1;
     text-align: left;
 }
+.message-date {
+	display: block;
+	float: right; 
+	margin: 10px;
+    margin-top: 4px;
+	text-align: right; 
+	font-family: 'Jura', sans-serif;
+    font-size: 11px;
+    color: #A0A9B1;
+}
 
 .chat-frame{		
 	box-sizing: border-box;
@@ -159,7 +169,8 @@
 	word-wrap: break-word;
 	float: left;
 	margin: 10px;
-    padding: 0px 5px;
+    margin-bottom: 0px;
+    padding: 5px 10px;
 	text-align: left;
 	font-family: 'Jura', sans-serif; 
     background: #4DEFA9;
@@ -172,6 +183,7 @@
 	word-wrap: break-word; 
 	float: right; 
 	margin: 10px;
+    margin-bottom: 0px;
     padding: 5px 10px;
 	text-align: right; 
 	font-family: 'Jura', sans-serif;

@@ -6,14 +6,24 @@ define(function(){
 		var messageTo = {};
 		
 		messageTo.user = '';
+		messageTo.lastDate = '';
 
 		messageTo.setUser = function (msgTo){
 			this.user = msgTo;
-			this.broadcasting();
+			this.broadcastingTo();
 		};
 
-		messageTo.broadcasting = function (){
+		messageTo.broadcastingTo = function (){
 			$rootScope.$broadcast('msgToEvent');
+		};
+
+		messageTo.setLastMessage = function (date){
+			this.lastDate = date;
+			this.broadcastingDate();
+		};
+
+		messageTo.broadcastingDate = function (){
+			$rootScope.$broadcast('msgDateEvent');
 		};
 
 		return messageTo;

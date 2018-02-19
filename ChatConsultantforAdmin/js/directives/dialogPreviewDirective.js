@@ -19,7 +19,14 @@ define(function () {
             controller: function ($scope, $attrs) {
                 $scope.userNameFirstLetter = $scope.userName.charAt(0);
 
+                $scope.$on('msgDateEvent', function () {
+                    if($scope.userName == selectUserFac.user){
+                        $scope.lastMsgDT = selectUserFac.lastDate;   
+                    };                                 
+                })  
+
                 $scope.selectUser = function(){
+                    console.log($scope.userName)
                     selectUserFac.setUser($scope.userName);
                 }
             },
