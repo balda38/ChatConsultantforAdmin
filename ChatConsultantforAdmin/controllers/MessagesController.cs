@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ChatConsultantforAdmin.models;
+using System.Globalization;
 
 namespace ChatConsultantforAdmin.controllers
 {
@@ -27,8 +28,10 @@ namespace ChatConsultantforAdmin.controllers
             msg.msgText = messageText;
             msg.msgFrom = messageFrom;
             msg.msgTo = messageTo;
+            CultureInfo provider = CultureInfo.GetCultureInfo("ru-RU");
             string dateFormat = "HH:mm:ss dd.MM.yyyy";
-            msg.date = DateTime.Parse(DateTime.Now.ToString(dateFormat));
+            var date = DateTime.Now.ToString();
+            msg.date = DateTime.Parse(date, provider);
 
             //db1.DialogsMessages.Add(msg);
             //db1.SaveChanges();

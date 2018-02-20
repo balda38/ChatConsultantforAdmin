@@ -16,7 +16,7 @@ namespace ChatConsultantforAdmin.controllers
         // GET: Message
         public ActionResult Index()
         {
-            return View(db.Clients.ToList());
+            return View(db.Clients.OrderByDescending(x => x.last_message).ToList());
         }        
     }
 }

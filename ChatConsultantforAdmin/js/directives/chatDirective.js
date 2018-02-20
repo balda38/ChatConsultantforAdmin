@@ -7,6 +7,7 @@ define(function () {
             restrict: 'EACM',
             template:
                 "<div id='chat2' class='chat-with-user'>" +
+                    "<span id='hint' class='chat-hint'>Пожалуйста, выберите диалог слева</span>" + 
 					"<ul id='messages' class='clear'>" +
 					"</ul>" +
                 "</div>" +
@@ -36,15 +37,18 @@ define(function () {
                     $http.get('/Messages/SetClient', { params: { client: data.msgTo } }, config)
                         .then(function (response) {
                             ul.innerHTML = "";
+
                             response.data.forEach(function (item, i, arr) {
-                                updateList(item.msgText, item.date);                               
-                            });                            
+                                updateList(item.msgText, item.date);                                
+                            });
+                            scrollToDown();
+
+                            document.getElementById('userMessage').style.opacity = 1;
+                            document.getElementById('hint').remove();
                         }, function (error) {
                             errorFn();
                         });                    
-                })  
-
-                scrollToDown();
+                })                  
                 
                 $scope.sendMessage = function (e) {
                     if (e.keyCode == 13) {
