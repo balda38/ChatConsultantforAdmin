@@ -5,12 +5,13 @@ require.config({
         'app': 'chatConsultantForAdmin',
         'chatDirective': 'directives/chatDirective',
         'dialogPreviewDirective': 'directives/dialogPreviewDirective',
-        'selectUserFactory': 'factories/selectUserFactory'
+        'selectUserFactory': 'factories/selectUserFactory',
+        'loginDirective': 'directives/loginDirective'
     },
 	
     shim: {
         'app': {
-            deps: ['angular', 'chatDirective', 'dialogPreviewDirective', 'selectUserFactory']
+            deps: ['angular', 'chatDirective', 'dialogPreviewDirective', 'selectUserFactory', 'loginDirective']
         },
         'chatDirective': {
             deps: ['angular']
@@ -19,6 +20,9 @@ require.config({
             deps: ['angular']
         },
         'selectUserFactory': {
+            deps: ['angular']
+        },
+        'loginDirective': {
             deps: ['angular']
         }
     }

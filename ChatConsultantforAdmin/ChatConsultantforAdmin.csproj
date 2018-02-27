@@ -177,7 +177,6 @@
     <Content Include="css\style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="index.html" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -202,10 +201,6 @@
     <Content Include="views\_ViewStart.cshtml" />
     <Content Include="views\Shared\_Layout.cshtml" />
     <Content Include="views\web.config" />
-    <Content Include="views\Admins\Create.cshtml" />
-    <Content Include="views\Admins\Delete.cshtml" />
-    <Content Include="views\Admins\Details.cshtml" />
-    <Content Include="views\Admins\Edit.cshtml" />
     <Content Include="views\Admins\Index.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

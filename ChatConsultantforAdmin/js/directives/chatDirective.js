@@ -55,15 +55,15 @@ define(function () {
                         e.preventDefault();
                         if (msg.value != "") {  
                             data.msgText = msg.value;                            
-                           console.log(data.msgTo);
+                            console.log(data.msgTo);
                             $http.post('/Messages/AddMessage', { messageText: data.msgText, messageFrom: data.msgFrom, messageTo: data.msgTo }, config)
                                 .then(function (response) {
                                     selectUserFac.setLastMessage(toJavaScriptDate(response.data));
 
                                     successPostMessageFn();
-                              }, function (error) {
-                                  errorFn();
-                              });
+                                }, function (error) {
+                                    errorFn();
+                                });
                         };                        
                     };
                 };

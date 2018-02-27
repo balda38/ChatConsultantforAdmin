@@ -21,12 +21,11 @@ define(function () {
 
                 $scope.$on('msgDateEvent', function () {
                     if($scope.userName == selectUserFac.user){
-                        $scope.lastMsgDT = selectUserFac.lastDate;   
+                        $scope.lastMsgDT = selectUserFac.lastDate;
                     };                                 
                 })  
 
                 $scope.selectUser = function(){
-                    console.log($scope.userName)
                     selectUserFac.setUser($scope.userName);
                 }
             },
