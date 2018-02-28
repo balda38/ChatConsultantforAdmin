@@ -104,18 +104,19 @@ define(function () {
                 }
 
                 $scope.userRegistration = function() {
-                    console.log("asd")
                     $http.post('/Admins/NewAdmin', { login: document.getElementById('login').value, password: document.getElementById('password').value }, config)
                         .then(function (response) {
-                            successPostMessageFn();
+                            if(response.data == "Учетная запись администратора с таким именем уже существует"){
+                                window.alert(response.data);                                
+                            }
+                            else{
+                                window.alert(response.data);
+                                $scope.switchPopup(2);
+                            }
                         }, function (error) {
                             errorFn();
                         });
                 }
-
-                function successPostMessageFn() {                    
-                    console.log("success");
-                };
 
                 function errorFn() {
                     console.log("error");

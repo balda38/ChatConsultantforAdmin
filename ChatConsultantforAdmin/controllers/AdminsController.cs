@@ -27,10 +27,21 @@ namespace ChatConsultantforAdmin.controllers
             admin.login = login;
             admin.password = password;
 
-            db.Admins.Add(admin);
-            db.SaveChanges();
+            JsonResult jsonMsg = Json("");
+            IQueryable<Admin> admins = db.Admins;
 
-            return Json("All ok");
+            if (db.Admins.Where(x => x.login == login).FirstOrDefault() == null)
+            {
+                db.Admins.Add(admin);
+                db.SaveChanges();
+                jsonMsg = Json("Успешная регистрация");
+            }
+            else
+            {
+                jsonMsg = Json("Учетная запись администратора с таким именем уже существует");
+            }            
+
+            return jsonMsg;
         }
     }
 }
