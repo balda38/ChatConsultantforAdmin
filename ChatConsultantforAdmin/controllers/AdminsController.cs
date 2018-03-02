@@ -43,5 +43,22 @@ namespace ChatConsultantforAdmin.controllers
 
             return jsonMsg;
         }
+
+        [HttpGet]
+        public JsonResult AdminEnter(string login, string password)
+        {
+            JsonResult jsonMsg = Json("Неверное имя пользователя или пароль", JsonRequestBehavior.AllowGet);
+
+            foreach (var admin in db.Admins)
+            {
+                if ((admin.login == login) && (admin.password == password))
+                {
+                    jsonMsg = Json("Успешный вход", JsonRequestBehavior.AllowGet);
+                    break;
+                }
+            }        
+
+            return jsonMsg;
+        }
     }
 }

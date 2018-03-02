@@ -75,27 +75,19 @@ define(function () {
                     }
                 };
         
-                // function userEnter() {
-                //     var login = document.getElementById("login").value;
-                //     var password = document.getElementById("password").value;
-                //     var checked = false;
-        
-                //     @foreach (var item in Model)
-                //     {
-                //         <text>
-                //         if (("@item.login" == login) && ("@item.password" == password))
-                //             {
-                //                 checked = true;
-                //                 sessionStorage.setItem("admin", login);
-                //                 document.location.href = '@Url.Content("~/Clients/Index/")';
-                //             }
-                //         </text>
-                //     }
-        
-                //     if (checked == false){
-                //         window.alert("Неверный логин или пароль");
-                //     };
-                // }; 
+                $scope.userEnter = function() {               
+                    $http.get('/Admins/AdminEnter', { params: { login: document.getElementById('login').value , password: document.getElementById('password').value } }, config)
+                    .then(function (response) {
+                        if (response.data == 'Успешный вход'){
+                            window.location.href = '/Clients/Index';
+                        }
+                        else{
+                            window.alert(response.data);
+                        }                        
+                    }, function (error) {
+                        errorFn();
+                    });                     
+                }; 
 
                 var config = {
                     headers: {
