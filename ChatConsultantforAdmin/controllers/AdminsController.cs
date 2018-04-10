@@ -7,17 +7,26 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ChatConsultantforAdmin.models;
+using Ninject;
 
 namespace ChatConsultantforAdmin.controllers
 {
     public class AdminsController : Controller
     {
         private AdminContext db = new AdminContext();
+        IRepository repository;
+
+        public AdminsController()
+        {
+            IKernel ninjectKernel = new StandardKernel();
+            ninjectKernel.Bind<IRepository>().To<AdminsRepository>();
+            repository = ninjectKernel.Get<IRepository>();
+        }
 
         // GET: Admins
         public ActionResult Index()
         {
-            return View(db.Admins.ToList());
+            return View(repository.List());
         }
 
         [HttpPost]
@@ -28,17 +37,12 @@ namespace ChatConsultantforAdmin.controllers
             admin.password = password;
 
             JsonResult jsonMsg = Json("");
-            IQueryable<Admin> admins = db.Admins;
 
-            if (db.Admins.Where(x => x.login == login).FirstOrDefault() == null)
-            {
-                db.Admins.Add(admin);
-                db.SaveChanges();
-                jsonMsg = Json("Успешная регистрация");
-            }
+            if (repository.Check(login)) jsonMsg = Json("Учетная запись администратора с таким именем уже существует");
             else
             {
-                jsonMsg = Json("Учетная запись администратора с таким именем уже существует");
+                repository.Save(admin);
+                jsonMsg = Json("Успешная регистрация");
             }            
 
             return jsonMsg;
@@ -47,16 +51,10 @@ namespace ChatConsultantforAdmin.controllers
         [HttpGet]
         public JsonResult AdminEnter(string login, string password)
         {
-            JsonResult jsonMsg = Json("Неверное имя пользователя или пароль", JsonRequestBehavior.AllowGet);
+            JsonResult jsonMsg = Json("");
 
-            foreach (var admin in db.Admins)
-            {
-                if ((admin.login == login) && (admin.password == password))
-                {
-                    jsonMsg = Json("Успешный вход", JsonRequestBehavior.AllowGet);
-                    break;
-                }
-            }        
+            if (repository.Enter(login, password)) jsonMsg = Json("Успешный вход", JsonRequestBehavior.AllowGet);
+            else jsonMsg = Json("Неправильный логин или пароль", JsonRequestBehavior.AllowGet);
 
             return jsonMsg;
         }
