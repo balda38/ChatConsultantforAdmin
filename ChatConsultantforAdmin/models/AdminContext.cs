@@ -14,7 +14,7 @@ namespace ChatConsultantforAdmin.models
         public DbSet<Admin> Admins { get; set; }
     }
 
-    public interface IRepository
+    public interface AdmRepository
     {
         IEnumerable<Admin> List();
         void Save(Admin admin);
@@ -22,7 +22,7 @@ namespace ChatConsultantforAdmin.models
         bool Enter(string login, string password);
     }
 
-    public class AdminsRepository : IDisposable, IRepository
+    public class AdminsRepository : IDisposable, AdmRepository
     {
         private AdminContext db = new AdminContext();
 

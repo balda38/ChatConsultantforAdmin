@@ -14,13 +14,11 @@ namespace ChatConsultantforAdmin.controllers
     public class AdminsController : Controller
     {
         private AdminContext db = new AdminContext();
-        IRepository repository;
+        AdmRepository repository;
 
-        public AdminsController()
+        public AdminsController(AdmRepository repo)
         {
-            IKernel ninjectKernel = new StandardKernel();
-            ninjectKernel.Bind<IRepository>().To<AdminsRepository>();
-            repository = ninjectKernel.Get<IRepository>();
+            repository = repo;
         }
 
         // GET: Admins

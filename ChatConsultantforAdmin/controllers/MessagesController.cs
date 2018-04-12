@@ -15,10 +15,18 @@ namespace ChatConsultantforAdmin.controllers
     {
         private DialogsMessageContext db1 = new DialogsMessageContext();
         private ClientsContext db2 = new ClientsContext();
+        MsgRepository repository1;
+        ClntRepository repository2;
+
+        public MessagesController(MsgRepository repo1, ClntRepository repo2)
+        {
+            repository1 = repo1;
+            repository2 = repo2;
+        }
         // GET: Messages
         public ActionResult DialogWindow()
         {
-            return View(db1.DialogsMessages.ToList());
+            return View(repository1.List());
         }
 
         [HttpPost]
@@ -33,12 +41,8 @@ namespace ChatConsultantforAdmin.controllers
             var date = DateTime.Now.ToString();
             msg.date = DateTime.Parse(date, provider);
 
-            //db1.DialogsMessages.Add(msg);
-            //db1.SaveChanges();
-
-            var nedeedClient = db2.Clients.Where(x => x.name == messageTo).FirstOrDefault();
-            nedeedClient.last_message = msg.date.ToString();
-            db2.SaveChanges();
+            //repository1.Save(msg);
+            //repository2.SetLastMsg(messageTo, msg.date);
 
             return Json(msg.date);
         }
@@ -46,7 +50,7 @@ namespace ChatConsultantforAdmin.controllers
         [HttpGet]
         public JsonResult SetClient(string client)
         {
-            var clientMessages = db1.DialogsMessages.Where(x => x.msgTo == client).ToList();
+            var clientMessages = repository1.SetClient(client);
 
             return Json(clientMessages, JsonRequestBehavior.AllowGet);
         }
