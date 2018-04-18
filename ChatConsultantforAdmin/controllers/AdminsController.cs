@@ -27,6 +27,17 @@ namespace ChatConsultantforAdmin.controllers
             return View(repository.List());
         }
 
+        public ActionResult Edit()
+        {
+            return View();
+        }
+
+        public ActionResult EditAdmin(string password)
+        {
+            repository.Edit(password);
+            return RedirectToAction("Edit");
+        }
+
         [HttpPost]
         public JsonResult NewAdmin(string login, string password)
         {

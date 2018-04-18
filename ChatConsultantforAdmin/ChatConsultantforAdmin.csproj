@@ -224,6 +224,7 @@
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="views\Clients\index.cshtml" />
     <Content Include="views\Messages\DialogWindow.cshtml" />
+    <Content Include="views\Admins\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -265,6 +266,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="videos\" />
+    <Folder Include="views\Default\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

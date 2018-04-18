@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ChatConsultantforAdmin.models.Admin>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../../bower_components/sculptor/css/sculptor.css">
+    <link href="~/css/style.css" rel="stylesheet" />
+    <script src="../../bower_components/requirejs/require.js" data-main="../../js/main"></script>
+</head>
+<body>
+    <div class="header">
+        <p class="header-title">ChatConsultant</p>
+        <ul class="help-bar">
+            <li><a>Помощь</a>
+            <li><a>Информация</a>
+        </ul>
+        <div class='circle-admin-avatar'><span class='admin-name'>A</span></div>
+    </div>
+    <div class="page-body">
+        <form action="/Admins/EditAdmin" method="post">
+            <br><br>
+            <input placeholder="Пароль" name="password">
+            <br><br>
+            <button type="submit"/>Изменить
+        </form>
+    </div>
+</body>
+</html>
+

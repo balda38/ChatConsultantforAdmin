@@ -11,7 +11,15 @@
     <script src="../../bower_components/requirejs/require.js" data-main="../../js/main"></script>    
 </head>
 <body>
-    <div class="page-body">
+    <div class="header">
+        <p class="header-title">ChatConsultant</p>
+        <ul class="help-bar">
+            <li><a>Помощь</a>
+            <li><a>Информация</a>     
+        </ul>   
+        <div class='circle-admin-avatar' onclick="editAdmin()"><span class='admin-name'>A</span></div> 
+    </div>
+    <div class="page-body">       
         <p style="font-size: 18px; font-weight: bold;">Пользователи:</p>
         <table style="width: 100%;" ng-app="chatConsultantForAdmin">
             <tr style="width: 100%;">
@@ -32,3 +40,9 @@
     </div>    
 </body>
 </html>
+
+<script>
+    function editAdmin() {
+        window.location.href = '/Admins/Edit';
+    }
+</script>

@@ -8,7 +8,7 @@ define(function () {
             restrict: 'EACM',
             template:				
                 "<div class='user-dialog-preview' ng-click='selectUser()'>" +
-                    "<div class='circle-user-avatar' id='avatarCircle'><span class='avatar-name'>{{userNameFirstLetter}}</span></div> " +
+                    "<div class='circle-user-avatar' id='avatarCircle'><span class='avatar-name'>{{userNameFirstLetter}}</span></div>" +
                     "<span class='dialog-user-name'>{{userName}}</span>" +
                     "<span class='dialog-date'>Последнее сообщение: <br> {{lastMsgDT}}</span>" +
                 "</div>",        

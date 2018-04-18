@@ -20,6 +20,7 @@ namespace ChatConsultantforAdmin.models
         void Save(Admin admin);
         bool Check(string login);
         bool Enter(string login, string password);
+        void Edit(string password);
     }
 
     public class AdminsRepository : IDisposable, AdmRepository
@@ -47,6 +48,14 @@ namespace ChatConsultantforAdmin.models
         {
             if (db.Admins.Where(x => x.login == login && x.password == password).FirstOrDefault() != null) return true;
             else return false;
+        }
+
+        public void Edit(string password)
+        {
+            var adm = "admin1";
+
+            db.Admins.Where(x => x.login == adm).FirstOrDefault().password = password;
+            db.SaveChanges();
         }
 
         protected void Dispose(bool disposing)
