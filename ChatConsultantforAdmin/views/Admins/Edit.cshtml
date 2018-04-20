@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="header">
-        <p class="header-title">ChatConsultant</p>
+        <p class="header-title" onclick="returnToDialogs()">ChatConsultant</p>
         <ul class="help-bar">
             <li><a>Помощь</a>
             <li><a>Информация</a>
@@ -29,4 +29,11 @@
     </div>
 </body>
 </html>
+
+<script>
+    function returnToDialogs() {
+        window.location.href = '/Clients/Index';
+    }
+</script>
+
 

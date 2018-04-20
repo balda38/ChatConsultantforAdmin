@@ -233,6 +233,9 @@ ul.clear{
     font-style: italic;
     font-weight: bolder;
 }
+.header-title:hover{
+    cursor: pointer;
+}
 .help-bar{
     position: absolute;
     top: 15px;
