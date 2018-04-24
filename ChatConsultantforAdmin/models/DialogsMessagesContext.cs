@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using System.Globalization;
 
 namespace ChatConsultantforAdmin.models
 {
-    public class DialogsMessageContext : DbContext
+    public class DialogsMessagesContext : DbContext
     {
-        public DialogsMessageContext() : base("DbConnection")
+        public DialogsMessagesContext() : base("DbConnection")
         { }
 
         public DbSet<DialogsMessages> DialogsMessages { get; set; }
@@ -17,21 +18,31 @@ namespace ChatConsultantforAdmin.models
     public interface MsgRepository
     {
         IEnumerable<DialogsMessages> List();
-        void Save(DialogsMessages admin);
+        void Save(string msgText, string msgFrom, string msgTo);
         IEnumerable<DialogsMessages> SetClient(string client);
     }
 
     public class MessagesRepository : IDisposable, MsgRepository
     {
-        private DialogsMessageContext db = new DialogsMessageContext();
+        private DialogsMessagesContext db = new DialogsMessagesContext();
 
         public IEnumerable<DialogsMessages> List()
         {
             return db.DialogsMessages;
         }
 
-        public void Save(DialogsMessages msg)
+        public void Save(string msgText, string msgFrom, string msgTo)
         {
+            DialogsMessages msg = new DialogsMessages();
+            msg.msgText = msgText;
+            msg.msgFrom = msgFrom;
+            msg.msgTo = msgTo;
+
+            //CultureInfo provider = CultureInfo.GetCultureInfo("ru-RU");
+            var date = DateTime.Now;
+            msg.date = date;
+            //DateTime.Parse(date, provider)
+
             db.DialogsMessages.Add(msg);
             db.SaveChanges();
         }

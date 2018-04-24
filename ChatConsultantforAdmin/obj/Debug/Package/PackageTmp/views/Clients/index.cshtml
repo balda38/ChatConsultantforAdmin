@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ChatConsultantforAdmin.models.Clients>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>        
+    <link rel="stylesheet" href="../../bower_components/sculptor/css/sculptor.css">
+    <link href="~/css/style.css" rel="stylesheet" />
+    <script src="../../bower_components/requirejs/require.js" data-main="../../js/main"></script>    
+</head>
+<body>
+    <div class="header">
+        <p class="header-title" onclick="returnToDialogs()">ChatConsultant</p>
+        <ul class="help-bar">
+            <li><a>Помощь</a>
+            <li><a>Информация</a>     
+        </ul>   
+        <div class='circle-admin-avatar' onclick="editAdmin()"><span class='admin-name'>A</span></div> 
+    </div>
+    <div class="page-body">       
+        <p style="font-size: 18px; font-weight: bold;">Пользователи:</p>
+        <table style="width: 100%;" ng-app="chatConsultantForAdmin">
+            <tr style="width: 100%;">
+                <th style="width: 20%;">
+                    @{  foreach (var item in Model)
+                        {
+                            <dialog-preview-directive user-name="@item.name" last-msg-d-t="@item.last_message"></dialog-preview-directive>
+                        }
+                    }              
+                </th>
+                <th style="width: 80%;">
+                    <div class="chat-frame">
+                        <chat-directive></chat-directive>
+                    </div>                    
+                </th>
+            </tr>        
+        </table>
+    </div>    
+</body>
+</html>
+
+<script>
+    function editAdmin() {
+        window.location.href = '/Admins/Edit';
+    }
+
+    function returnToDialogs() {
+        window.location.href = '/Clients/Index';
+    }
+</script>

@@ -1,0 +1,37 @@
+{
+  "name": "sculptor",
+  "description": "The future web experience in CSS",
+  "main": "index.js",
+  "authors": [
+    "Fabio Soares <fabioars@live.com> (https://1fabiosores.github.io/sculptor)"
+  ],
+  "license": "GPL-3.0",
+  "keywords": [
+    "css",
+    "sass",
+    "mobile-fist",
+    "responsive",
+    "framework",
+    "web",
+    "app"
+  ],
+  "homepage": "https://github.com/1fabiosoares/sculptor",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "version": "0.1.9",
+  "_release": "0.1.9",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.9",
+    "commit": "aaaa7783f1564cb51c6697db12679fd07a0f76e2"
+  },
+  "_source": "https://github.com/1fabiosoares/sculptor.git",
+  "_target": "^0.1.9",
+  "_originalSource": "sculptor",
+  "_direct": true
+}

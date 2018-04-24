@@ -1,0 +1,98 @@
+// ==============================================
+//                    Card
+// ==============================================
+.card{
+  background-color: $white;
+  border: 1px solid darken($niceGrey, 30%);
+  border-radius: $radiusLight;
+  margin: $defaultPadding/2;
+  @include niceBoxshadow($shadowInset, $shadowCardHoff, $shadowBlur, darken($niceGrey, 15%));
+  // =============================================
+  //                Card Header
+  // ==============================================
+  & >.header{
+    border-top-left-radius: $radiusLight;
+    border-top-right-radius: $radiusLight;
+    padding: $defaultPadding $defaultPadding*2;
+    font-size: $h2Size;
+    font-weight: $fontLight;
+    &.image{
+      display: flex;
+      align-items: flex-end;
+      padding: 0;
+      overflow: hidden;
+      border-top-left-radius: $radiusLight;
+      border-top-right-radius: $radiusLight;
+
+      & > span{
+        position: absolute;
+        padding: $defaultPadding;
+      }
+
+      & > img{
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  // ==============================================
+  //                Card Content
+  // ==============================================
+  & > .content{
+    padding: $defaultPadding;
+  }
+
+  // ==============================================
+  //                Card Modifiers
+  // ==============================================
+
+  &.primary{
+    border: 1px solid $primaryColor;
+    &.solid{
+      background: $primaryColor;
+      color: $white;
+    }
+  }
+
+  &.secondary{
+    border: 1px solid $secondaryColor;
+    &.solid{
+      background: $secondaryColor;
+      color: $white;
+    }
+  }
+
+  &.danger{
+    border: 1px solid $niceRed;
+    &.solid{
+      background: $niceRed;
+      color: $white;
+    }
+  }
+
+  &.warning{
+    border: 1px solid $waningColor;
+    &.solid{
+      background: $waningColor;
+      color: $white;
+    }
+  }
+
+  &.success{
+    border: 1px solid $successColor;
+    &.solid{
+      background: $successColor;
+      color: $white;
+    }
+  }
+
+  &.disabled{
+    background: darken($niceGrey, 15%) !important;
+    border: solid 1px darken($niceGrey, 15%) !important;
+    color: darken($niceGrey, 50%) !important;
+    cursor: not-allowed;
+    filter: grayscale(100%);
+  }
+}
