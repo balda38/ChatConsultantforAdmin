@@ -2,7 +2,7 @@
 define(function () {
     var directiveModule = angular.module('dialogPreviewDirective', []);
 
-    directiveModule.directive('dialogPreviewDirective', function (selectUserFac) {
+    directiveModule.directive('dialogPreviewDirective',  function (selectUserFac) {
         var uID = 0;
         return {
             restrict: 'EACM',
@@ -10,7 +10,7 @@ define(function () {
                 "<div class='user-dialog-preview' ng-click='selectUser()'>" +
                     "<div class='circle-user-avatar' id='avatarCircle'><span class='avatar-name'>{{userNameFirstLetter}}</span></div>" +
                     "<span class='dialog-user-name'>{{userName}}</span>" +
-                    "<span class='dialog-date'>Последнее сообщение: <br> {{lastMsgDT}}</span>" +
+                    "<span class='dialog-date'>Последнее сообщение: <br> {{zoneDT}}</span>" +
                 "</div>",        
             scope: {
                 userName: '@',
@@ -19,9 +19,25 @@ define(function () {
             controller: function ($scope, $attrs) {
                 $scope.userNameFirstLetter = $scope.userName.charAt(0);
 
+                $scope.zoneDT = toJavaScriptDate($scope.lastMsgDT);
+
+                function toJavaScriptDate(value) { 
+                    var dataComponents = value.split(/\.| |:/); 
+                    var dt = new Date(dataComponents[2], dataComponents[1], dataComponents[0], dataComponents[3], dataComponents[4], dataComponents[5]);
+                    var d = new Date();
+                    dt.setMinutes(dt.getMinutes() - d.getTimezoneOffset());
+  
+                    return addZeros(dt.getHours()) + ":" + addZeros(dt.getMinutes()) + ":" + addZeros(dt.getSeconds()) + " " + addZeros(dt.getDate()) + "." + addZeros((dt.getMonth() + 1)) + "." + dt.getFullYear();
+                }
+
+                function addZeros(dateComponent) {
+                    if (dateComponent < 10) return '0' + dateComponent;
+                    else return dateComponent;
+                }
+
                 $scope.$on('msgDateEvent', function () {
                     if($scope.userName == selectUserFac.user){
-                        $scope.lastMsgDT = selectUserFac.lastDate;
+                        $scope.lastMsgDT = toJavaScriptDate(selectUserFac.lastDate);
                     };                                 
                 })  
 

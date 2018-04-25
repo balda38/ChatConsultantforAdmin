@@ -32,7 +32,7 @@ namespace ChatConsultantforAdmin.models
         public void SetLastMsg(string msgTo, DateTime date)
         {
             var nedeedClient = db.Clients.Where(x => x.name == msgTo).FirstOrDefault();
-            nedeedClient.last_message = date.ToString();
+            nedeedClient.last_message = date;
             db.SaveChanges();
         }
 

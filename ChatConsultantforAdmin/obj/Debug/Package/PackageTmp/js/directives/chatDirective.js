@@ -29,10 +29,16 @@ define(function () {
                     }
                 }
 
-                $scope.$on('msgToEvent', function () {
-                    messageTo = selectUserFac.user;
+                var data = {
+                    msgText: undefined,
+                    msgFrom: "admin1",
+                    msgTo: undefined
+                }
 
-                    $http.get('/Messages/SetClient', { params: { client: messageTo } }, config)
+                $scope.$on('msgToEvent', function () {
+                    data.msgTo = selectUserFac.user;
+
+                    $http.get('/Messages/SetClient', { params: { client: data.msgTo } }, config)
                         .then(function (response) {
                             ul.innerHTML = "";
 
@@ -53,10 +59,12 @@ define(function () {
                 $scope.sendMessage = function (e) {
                     if (e.keyCode == 13) {
                         e.preventDefault();
-                        if (msg.value != "") {                                
-                            $http.post('/Messages/AddMessage', { msgText: msg.value, msgFrom: messageFrom, msgTo: messageTo }, config)
+                        if (msg.value != "") {   
+                            data.msgText = msg.value;   
+                            var d = new Date();                          
+                            $http.post('/Messages/AddMessage', { newMsg: data }, config)
                                 .then(function (response) {
-                                    successPostMessageFn();
+                                    successPostMessageFn(response.data);
                                 }, function (error) {
                                     errorFn(error);
                                 });
@@ -100,8 +108,8 @@ define(function () {
                     else return dateComponent;
                 }
 
-                function successPostMessageFn() {                    
-                    updateList(msg.value, new Date());
+                function successPostMessageFn(date) {                   
+                    updateList(msg.value, date);
                     msg.value = "";
 
                     scrollToDown();

@@ -18,7 +18,7 @@ namespace ChatConsultantforAdmin.models
     public interface MsgRepository
     {
         IEnumerable<DialogsMessages> List();
-        void Save(string msgText, string msgFrom, string msgTo);
+        void Save(DialogsMessages msg);
         IEnumerable<DialogsMessages> SetClient(string client);
     }
 
@@ -31,18 +31,8 @@ namespace ChatConsultantforAdmin.models
             return db.DialogsMessages;
         }
 
-        public void Save(string msgText, string msgFrom, string msgTo)
+        public void Save(DialogsMessages msg)
         {
-            DialogsMessages msg = new DialogsMessages();
-            msg.msgText = msgText;
-            msg.msgFrom = msgFrom;
-            msg.msgTo = msgTo;
-
-            //CultureInfo provider = CultureInfo.GetCultureInfo("ru-RU");
-            var date = DateTime.Now;
-            msg.date = date;
-            //DateTime.Parse(date, provider)
-
             db.DialogsMessages.Add(msg);
             db.SaveChanges();
         }

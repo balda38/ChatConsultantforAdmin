@@ -28,16 +28,20 @@ namespace ChatConsultantforAdmin.controllers
         }
 
         [HttpPost]
-        public JsonResult AddMessage(string msgText, string msgFrom, string msgTo)
+        public JsonResult AddMessage(DialogsMessages newMsg)
         {
             JsonResult jsonMsg = Json("");                    
 
-            if (msgText != null)
-            {         
-                repository1.Save(msgText, msgFrom, msgTo);
-                repository2.SetLastMsg(msgTo, DateTime.Now);
+            if (newMsg.msgText != null)
+            {
+                CultureInfo provider = CultureInfo.GetCultureInfo("ru-RU");
+                var date = DateTime.Now;
+                newMsg.date = DateTime.Parse(date.ToString(), provider);
 
-                jsonMsg = Json("success");
+                repository1.Save(newMsg);
+                repository2.SetLastMsg(newMsg.msgTo, newMsg.date);
+
+                jsonMsg = Json(newMsg.date, JsonRequestBehavior.AllowGet);
             }                      
 
             return jsonMsg;

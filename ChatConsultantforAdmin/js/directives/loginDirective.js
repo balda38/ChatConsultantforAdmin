@@ -12,9 +12,9 @@ define(function () {
                         "Авторизуйтесь в качестве администратора"+
                         "ChatConsultant"+
                         "<br><br>"+
-                        "<input type='text' id='login' placeholder='Логин'>"+
+                        "<input type='text' id='login' placeholder='Логин' ng-keydown='usrEnter($event)'>"+
                         "<br><br>"+
-                        "<input type='password' id='password' placeholder='Пароль'>"+
+                        "<input type='password' id='password' placeholder='Пароль' ng-keydown='usrEnter($event)'>"+
                         "<br><br>"+
                         "<button class='popup-button' ng-click='userEnter()'>Вход</button>"+
                         "<button class='popup-button' ng-click='switchPopup(1)'>Регистрация</button>"+
@@ -94,6 +94,19 @@ define(function () {
                         errorFn();
                     });                     
                 }; 
+
+                $scope.usrEnter = function(e) {
+                    if (e.keyCode == 13) {
+                        if ((document.getElementById('login').value != "") && (document.getElementById('password').value != ""))
+                        {
+                            console.log(document.getElementById('login').value + " / " + document.getElementById('password').value)
+                            $scope.userEnter();
+                        }
+                        else{
+                            window.alert("Введите, пожалуйста, Ваши данные");
+                        }
+                    }                    
+                };                
 
                 $scope.userRegistration = function() {
                     $http.post('/Admins/NewAdmin', { login: document.getElementById('login').value, password: document.getElementById('password').value }, config)
