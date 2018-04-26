@@ -54,17 +54,6 @@ F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\System.
 F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\System.Web.WebPages.xml
 F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\System.Web.WebPages.Deployment.xml
 F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\System.Web.WebPages.Razor.xml
-F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Microsoft.AspNet.SignalR.Core.dll
-F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
-F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Microsoft.Owin.dll
-F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Microsoft.Owin.Host.SystemWeb.dll
-F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Microsoft.Owin.Security.dll
-F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Owin.dll
-F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Microsoft.AspNet.SignalR.Core.xml
-F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
-F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Microsoft.Owin.xml
-F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Microsoft.Owin.Host.SystemWeb.xml
-F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Microsoft.Owin.Security.xml
 F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\obj\Debug\ChatConsultantforAdmin.csprojResolveAssemblyReference.cache
 F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Ninject.dll
 F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Ninject.Web.Common.dll
@@ -74,8 +63,3 @@ F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Ninject
 F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Ninject.Web.Common.xml
 F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Ninject.Web.Common.WebHost.xml
 F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Ninject.Web.Mvc.xml
-F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\ru\Microsoft.AspNet.SignalR.Core.resources.dll
-F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\ru\Microsoft.AspNet.SignalR.SystemWeb.resources.dll
-F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\ru\Microsoft.Owin.resources.dll
-F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\ru\Microsoft.Owin.Host.SystemWeb.resources.dll
-F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\ru\Microsoft.Owin.Security.resources.dll
