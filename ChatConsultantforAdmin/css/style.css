@@ -283,3 +283,51 @@ ul.clear{
     margin-left: 32%;
     margin-top: 20%;
 }
+.admin-menu{
+    box-sizing: border-box;
+    border: 1px solid #A0A9B1;
+	border-radius: 6px;
+    position: absolute;
+    top: 80%;
+    right: 0;
+    opacity: 0;
+    pointer-events: none;
+    background: #FFF;
+    width: 120px;
+    height: 55px;
+    list-style: none;
+    margin-left: 0;
+    padding-left: 14px;        
+}
+.admin-menu li{
+    padding-bottom: 10px;
+    font-size: 18px;
+    transition-property: color;
+    transition-duration: 300ms;
+}
+.admin-menu li:hover{
+    cursor: pointer;
+    color: #ad6d0c;
+}
+
+.settings-section{
+    position: relative;
+    width: 90%;
+    left: 5%;    
+}
+.split-line{    
+    border-bottom: 5px solid #A0A9B1;
+	border-radius: 12px;
+}
+.settings-hint{
+    box-sizing: border-box;
+    width: 100%;
+    background: #FFF0F5;
+    margin-top: 2px;
+    font-size: 13px;
+    font-style: italic;
+}
+.settings-input{
+    width: 30%;
+    border-radius: 3px;
+}

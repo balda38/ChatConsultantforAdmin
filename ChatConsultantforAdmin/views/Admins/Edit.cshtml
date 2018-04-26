@@ -17,14 +17,35 @@
             <li><a>Помощь</a>
             <li><a>Информация</a>
         </ul>
-        <div class='circle-admin-avatar'><span class='admin-name'>A</span></div>
+        <admin-avatar-directive></admin-avatar-directive>
     </div>
     <div class="page-body">
         <form action="/Admins/EditAdmin" method="post">
             <br><br>
-            <input placeholder="Пароль" name="password">
-            <br><br>
-            <button type="submit"/>Изменить
+            <div class="settings-section">
+                <span style="font-size: 20px;">Персональная информация</span>
+                <div class="split-line"></div>
+                <div class="settings-hint">Это та информация, которая видна всем. В первую очередь она необходима посетителям сайта, на котором Вы работаете для того, чтобы они знали с кем общаются.</div>
+                <br>
+                <input class="settings-input" placeholder="Имя" name="adminName">
+                <br><br>
+                <input class="settings-input" placeholder="Должность" name="post">
+                <br><br>
+            </div>
+            <br>
+            <div class="settings-section">
+                <span style="font-size: 20px;">Данные аккаунта</span>
+                <div class="split-line"></div>
+                <div class="settings-hint">Это та информация, которая видна только Вам. Она нигде не отображается и необходима только для входа на сайт, рассылки и некоторых других функций.</div>
+                <br>
+                <input class="settings-input" placeholder="Пароль" name="password" type="password">
+                <br><br>
+                <input class="settings-input" placeholder="Эл. почта" name="email">                
+                <br><br>
+                <input class="settings-input" placeholder="Рабочий сайт" name="site">
+                <br><br>
+                <button class="popup-button" type="submit" />Изменить
+            </div>            
         </form>
     </div>
 </body>
