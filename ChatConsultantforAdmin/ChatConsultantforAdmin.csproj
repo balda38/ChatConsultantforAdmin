@@ -224,15 +224,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201710151036440_InitialCreate.cs" />
-    <Compile Include="Migrations\201710151036440_InitialCreate.Designer.cs">
-      <DependentUpon>201710151036440_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804261927043_AddingCols.cs" />
-    <Compile Include="Migrations\201804261927043_AddingCols.Designer.cs">
-      <DependentUpon>201804261927043_AddingCols.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="models\Admin.cs" />
     <Compile Include="models\AdminContext.cs" />
     <Compile Include="models\Clients.cs" />
@@ -251,14 +242,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="videos\" />
     <Folder Include="views\Default\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710151036440_InitialCreate.resx">
-      <DependentUpon>201710151036440_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804261927043_AddingCols.resx">
-      <DependentUpon>201804261927043_AddingCols.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

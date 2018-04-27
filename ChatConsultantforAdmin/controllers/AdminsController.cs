@@ -38,14 +38,14 @@ namespace ChatConsultantforAdmin.controllers
         }
 
         [HttpPost]
-        public JsonResult NewAdmin(string login, string password)
+        public JsonResult NewAdmin(Admin admin)
         {
             JsonResult jsonMsg = Json("");
 
-            if (repository.Check(login)) jsonMsg = Json("Учетная запись администратора с таким именем уже существует");
+            if (repository.Check(admin.login)) jsonMsg = Json("Учетная запись администратора с таким именем уже существует");
             else
             {
-                repository.Save(login, password);
+                repository.Save(admin);
                 jsonMsg = Json("Успешная регистрация");
             }
 

@@ -63,6 +63,3 @@ F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Ninject
 F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Ninject.Web.Common.xml
 F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Ninject.Web.Common.WebHost.xml
 F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\bin\Ninject.Web.Mvc.xml
-F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\obj\Debug\ChatConsultantforAdmin.Migrations.InitialCreate.resources
-F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\obj\Debug\ChatConsultantforAdmin.csproj.GenerateResource.Cache
-F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\obj\Debug\ChatConsultantforAdmin.Migrations.AddingCols.resources

@@ -17,7 +17,7 @@ namespace ChatConsultantforAdmin.models
     public interface AdmRepository
     {
         IEnumerable<Admin> List();
-        void Save(string login, string password);
+        void Save(Admin admin);
         bool Check(string login);
         bool Enter(string login, string password);
         void Edit(string password);
@@ -32,12 +32,8 @@ namespace ChatConsultantforAdmin.models
             return db.Admins;
         }
 
-        public void Save(string login, string password)
+        public void Save(Admin admin)
         {
-            Admin admin = new Admin();
-            admin.login = login;
-            admin.password = password;
-
             db.Admins.Add(admin);
             db.SaveChanges();
         }
