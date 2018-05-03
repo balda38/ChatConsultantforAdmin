@@ -31,10 +31,12 @@ namespace ChatConsultantforAdmin.controllers
             return View();
         }
 
-        public ActionResult EditAdmin(string password)
+        public JsonResult EditAdmin(Admin settings)
         {
-            repository.Edit(password);
-            return RedirectToAction("Edit");
+            JsonResult jsonMsg = Json("done");
+
+            repository.Edit(settings);
+            return jsonMsg;
         }
 
         [HttpPost]
@@ -61,6 +63,12 @@ namespace ChatConsultantforAdmin.controllers
             else jsonMsg = Json("Неправильный логин или пароль", JsonRequestBehavior.AllowGet);
 
             return jsonMsg;
+        }
+
+        [HttpGet]
+        public JsonResult SettingsList(string login)
+        {
+            return Json(repository.List().Where(x => x.login == login), JsonRequestBehavior.AllowGet);
         }
     }
 }

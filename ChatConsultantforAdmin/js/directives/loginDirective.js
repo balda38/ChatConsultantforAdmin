@@ -90,25 +90,28 @@ define(function () {
                     }
                 }
         
-                $scope.userEnter = function() {               
-                    $http.get('/Admins/AdminEnter', { params: { login: document.getElementById('login').value, password: document.getElementById('password').value } }, config)
-                    .then(function (response) {
-                        if (response.data == 'Успешный вход'){
-                            window.location.href = '/Clients/Index';
-                        }
-                        else{
-                            window.alert(response.data);
-                        }                        
-                    }, function (error) {
-                        errorFn();
-                    });                     
+                $scope.userEnter = function() {  
+                    if ((document.getElementById('login').value != "") && (document.getElementById('password').value != "")){    
+                        $http.get('/Admins/AdminEnter', { params: { login: document.getElementById('login').value, password: document.getElementById('password').value } }, config)
+                        .then(function (response) {
+                            if (response.data == 'Успешный вход'){
+                                window.location.href = '/Clients/Index';
+                            }
+                            else{
+                                window.alert(response.data);
+                            }                        
+                        }, function (error) {
+                            errorFn();
+                        });                
+                    }   
+                    else{
+                        window.alert("Введите, пожалуйста, Ваши данные");
+                    }  
                 }; 
 
                 $scope.usrEnter = function(e) {
                     if (e.keyCode == 13) {
-                        if ((document.getElementById('login').value != "") && (document.getElementById('password').value != ""))
-                        {
-                            console.log(document.getElementById('login').value + " / " + document.getElementById('password').value)
+                        if ((document.getElementById('login').value != "") && (document.getElementById('password').value != "")){
                             $scope.userEnter();
                         }
                         else{

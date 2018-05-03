@@ -20,7 +20,7 @@ namespace ChatConsultantforAdmin.models
         void Save(Admin admin);
         bool Check(string login);
         bool Enter(string login, string password);
-        void Edit(string password);
+        void Edit(Admin admin);
     }
 
     public class AdminsRepository : IDisposable, AdmRepository
@@ -50,12 +50,37 @@ namespace ChatConsultantforAdmin.models
             else return false;
         }
 
-        public void Edit(string password)
+        public void Edit(Admin settings)
         {
-            var adm = "admin1";
+            if (settings.name != null)
+            {
+                db.Admins.Where(x => x.login == settings.login).FirstOrDefault().name = settings.name;
+                db.SaveChanges();
+            }
 
-            db.Admins.Where(x => x.login == adm).FirstOrDefault().password = password;
-            db.SaveChanges();
+            if (settings.post != null)
+            {
+                db.Admins.Where(x => x.login == settings.login).FirstOrDefault().post = settings.post;
+                db.SaveChanges();
+            }
+
+            if (settings.password != null)
+            {
+                db.Admins.Where(x => x.login == settings.login).FirstOrDefault().password = settings.password;
+                db.SaveChanges();
+            }
+
+            if (settings.email != null)
+            {
+                db.Admins.Where(x => x.login == settings.login).FirstOrDefault().email = settings.email;
+                db.SaveChanges();
+            }
+
+            if (settings.site != null)
+            {
+                db.Admins.Where(x => x.login == settings.login).FirstOrDefault().site = settings.site;
+                db.SaveChanges();
+            }
         }
 
         protected void Dispose(bool disposing)
