@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <sitemanifest>
-  <IisApp path="F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\obj\Debug\Package\PackageTmp" managedRuntimeVersion="v4.0" />
-  <setAcl path="F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\obj\Debug\Package\PackageTmp" setAclResourceType="Directory" />
-  <setAcl path="F:\Users\aldui\Desktop\ChatConsultantforAdmin\ChatConsultantforAdmin\obj\Debug\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+  <IisApp path="F:\Users\aldui\Desktop\chat-consultant-4-admin\ChatConsultantforAdmin\obj\Debug\Package\PackageTmp" managedRuntimeVersion="v4.0" />
+  <setAcl path="F:\Users\aldui\Desktop\chat-consultant-4-admin\ChatConsultantforAdmin\obj\Debug\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="F:\Users\aldui\Desktop\chat-consultant-4-admin\ChatConsultantforAdmin\obj\Debug\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
 </sitemanifest>

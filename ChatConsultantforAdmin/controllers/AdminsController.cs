@@ -70,5 +70,14 @@ namespace ChatConsultantforAdmin.controllers
         {
             return Json(repository.List().Where(x => x.login == login), JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public JsonResult ChangeStatus(string login, bool status)
+        {
+            JsonResult jsonMsg = Json("done");
+
+            repository.ChangeStatus(login, status);
+            return jsonMsg;
+        }
     }
 }

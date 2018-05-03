@@ -31,21 +31,23 @@ namespace ChatConsultantforAdmin.controllers
             return View();
         }
 
-        public ActionResult EditAdmin(string password)
+        public JsonResult EditAdmin(Admin settings)
         {
-            repository.Edit(password);
-            return RedirectToAction("Edit");
+            JsonResult jsonMsg = Json("done");
+
+            repository.Edit(settings);
+            return jsonMsg;
         }
 
         [HttpPost]
-        public JsonResult NewAdmin(string login, string password)
+        public JsonResult NewAdmin(Admin admin)
         {
             JsonResult jsonMsg = Json("");
 
-            if (repository.Check(login)) jsonMsg = Json("Учетная запись администратора с таким именем уже существует");
+            if (repository.Check(admin.login)) jsonMsg = Json("Учетная запись администратора с таким именем уже существует");
             else
             {
-                repository.Save(login, password);
+                repository.Save(admin);
                 jsonMsg = Json("Успешная регистрация");
             }
 
@@ -60,6 +62,21 @@ namespace ChatConsultantforAdmin.controllers
             if (repository.Enter(login, password)) jsonMsg = Json("Успешный вход", JsonRequestBehavior.AllowGet);
             else jsonMsg = Json("Неправильный логин или пароль", JsonRequestBehavior.AllowGet);
 
+            return jsonMsg;
+        }
+
+        [HttpGet]
+        public JsonResult SettingsList(string login)
+        {
+            return Json(repository.List().Where(x => x.login == login), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult ChangeStatus(string login, bool status)
+        {
+            JsonResult jsonMsg = Json("done");
+
+            repository.ChangeStatus(login, status);
             return jsonMsg;
         }
     }

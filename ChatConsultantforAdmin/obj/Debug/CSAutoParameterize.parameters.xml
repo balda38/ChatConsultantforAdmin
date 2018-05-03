@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="DbConnection-Web.config Connection String" description="DbConnection Строка подключения в web.config, используемая приложением для доступа к базе данных." defaultValue="Data Source=chat-consultant.database.windows.net; Initial Catalog=chat-consultant; UId=chatadmin; Pwd=Ep38xC4H3378OOOt138das; Encrypt=True; TrustServerCertificate=False; Connection Timeout=30;" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="F:\\Users\\aldui\\Desktop\\ChatConsultantforAdmin\\ChatConsultantforAdmin\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DbConnection']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="F:\\Users\\aldui\\Desktop\\chat-consultant-4-admin\\ChatConsultantforAdmin\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DbConnection']/@connectionString" />
   </parameter>
 </parameters>

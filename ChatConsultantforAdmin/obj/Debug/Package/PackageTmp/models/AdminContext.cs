@@ -8,7 +8,7 @@ namespace ChatConsultantforAdmin.models
 {
     public class AdminContext : DbContext
     {
-        public AdminContext():base("DbConnection")
+        public AdminContext() : base("DbConnection")
         { }
 
         public DbSet<Admin> Admins { get; set; }
@@ -17,10 +17,11 @@ namespace ChatConsultantforAdmin.models
     public interface AdmRepository
     {
         IEnumerable<Admin> List();
-        void Save(string login, string password);
+        void Save(Admin admin);
         bool Check(string login);
         bool Enter(string login, string password);
-        void Edit(string password);
+        void Edit(Admin admin);
+        void ChangeStatus(string login, bool status);
     }
 
     public class AdminsRepository : IDisposable, AdmRepository
@@ -32,12 +33,8 @@ namespace ChatConsultantforAdmin.models
             return db.Admins;
         }
 
-        public void Save(string login, string password)
+        public void Save(Admin admin)
         {
-            Admin admin = new Admin();
-            admin.login = login;
-            admin.password = password;
-
             db.Admins.Add(admin);
             db.SaveChanges();
         }
@@ -54,11 +51,42 @@ namespace ChatConsultantforAdmin.models
             else return false;
         }
 
-        public void Edit(string password)
+        public void Edit(Admin settings)
         {
-            var adm = "admin1";
+            if (settings.name != null)
+            {
+                db.Admins.Where(x => x.login == settings.login).FirstOrDefault().name = settings.name;
+                db.SaveChanges();
+            }
 
-            db.Admins.Where(x => x.login == adm).FirstOrDefault().password = password;
+            if (settings.post != null)
+            {
+                db.Admins.Where(x => x.login == settings.login).FirstOrDefault().post = settings.post;
+                db.SaveChanges();
+            }
+
+            if (settings.password != null)
+            {
+                db.Admins.Where(x => x.login == settings.login).FirstOrDefault().password = settings.password;
+                db.SaveChanges();
+            }
+
+            if (settings.email != null)
+            {
+                db.Admins.Where(x => x.login == settings.login).FirstOrDefault().email = settings.email;
+                db.SaveChanges();
+            }
+
+            if (settings.site != null)
+            {
+                db.Admins.Where(x => x.login == settings.login).FirstOrDefault().site = settings.site;
+                db.SaveChanges();
+            }
+        }
+
+        public void ChangeStatus(string login, bool status)
+        {
+            db.Admins.Where(x => x.login == login).FirstOrDefault().status = status;
             db.SaveChanges();
         }
 

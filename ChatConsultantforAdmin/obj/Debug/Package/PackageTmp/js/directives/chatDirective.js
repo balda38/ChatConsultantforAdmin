@@ -6,8 +6,9 @@ define(function () {
         return {
             restrict: 'EACM',
             template:
+                "<div class='dialog-header' id='dialogHeader'>{{dialogHeader}}</div>"+
                 "<div id='chat2' class='chat-with-user'>" +
-                    "<span id='hint' class='chat-hint'>Пожалуйста, выберите диалог слева</span>" + 
+                    "<span id='hint' class='chat-hint'>Пожалуйста, выберите диалог слева</span>" +                     
 					"<ul id='messages' class='clear'>" +
 					"</ul>" +
                 "</div>" +
@@ -37,6 +38,7 @@ define(function () {
 
                 $scope.$on('msgToEvent', function () {
                     data.msgTo = selectUserFac.user;
+                    $scope.dialogHeader = selectUserFac.user;
 
                     $http.get('/Messages/SetClient', { params: { client: data.msgTo } }, config)
                         .then(function (response) {
@@ -51,6 +53,7 @@ define(function () {
                                 document.getElementById('hint').remove();
                             }                            
                             document.getElementById('userMessage').style.opacity = 1;
+                            document.getElementById('dialogHeader').style.opacity = 1;
                         }, function (error) {
                             errorFn();
                         });                    

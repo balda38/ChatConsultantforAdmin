@@ -8,7 +8,7 @@ namespace ChatConsultantforAdmin.models
 {
     public class AdminContext : DbContext
     {
-        public AdminContext():base("DbConnection")
+        public AdminContext() : base("DbConnection")
         { }
 
         public DbSet<Admin> Admins { get; set; }
@@ -21,6 +21,7 @@ namespace ChatConsultantforAdmin.models
         bool Check(string login);
         bool Enter(string login, string password);
         void Edit(Admin admin);
+        void ChangeStatus(string login, bool status);
     }
 
     public class AdminsRepository : IDisposable, AdmRepository
@@ -81,6 +82,12 @@ namespace ChatConsultantforAdmin.models
                 db.Admins.Where(x => x.login == settings.login).FirstOrDefault().site = settings.site;
                 db.SaveChanges();
             }
+        }
+
+        public void ChangeStatus(string login, bool status)
+        {
+            db.Admins.Where(x => x.login == login).FirstOrDefault().status = status;
+            db.SaveChanges();
         }
 
         protected void Dispose(bool disposing)

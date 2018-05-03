@@ -30,16 +30,16 @@
 }
 .popup{
     width: 100%;
-    height: 2000px;    
+    height: 100%;    
     overflow: hidden;
     position: fixed;
     top: 0px;
 }
 .popup .popup-content{
     margin-left: 42%;
-    margin-top: 16%;
+    margin-top: 19%;
     width: 16%;
-    height: 10%;
+    height: auto;
     padding: 10px;
     background-color: #c5c5c5;
     border-radius: 5px;
@@ -114,6 +114,16 @@
     color: #A0A9B1;
     text-align: left;
 }
+.dialog-header{
+    position: absolute;
+    box-sizing: border-box;
+    border-bottom: 1px solid #A0A9B1;
+    width: 100%;
+    height: 50px;
+    opacity: 0;
+    font-size: 20px;
+    padding: 15px;
+}
 .message-date {
 	display: block;
 	float: right; 
@@ -143,7 +153,8 @@
     opacity: 1;
     position: absolute;
     width: 100%;
-	height: 85%;
+    top: 7%;
+	height: 78%;
     overflow-x: hidden;
 	overflow-y: auto;
 }
@@ -198,6 +209,8 @@
 	border-radius: 6px;
 }
 ul.clear{
+    position: absolute;
+    width: 100%;
 	list-style-type: none;
 	overflow: hidden;
 	margin-left: 0;
@@ -269,4 +282,52 @@ ul.clear{
     position: absolute;
     margin-left: 32%;
     margin-top: 20%;
+}
+.admin-menu{
+    box-sizing: border-box;
+    border: 1px solid #A0A9B1;
+	border-radius: 6px;
+    position: absolute;
+    top: 80%;
+    right: 0;
+    opacity: 0;
+    pointer-events: none;
+    background: #FFF;
+    width: 120px;
+    height: 55px;
+    list-style: none;
+    margin-left: 0;
+    padding-left: 14px;        
+}
+.admin-menu li{
+    padding-bottom: 10px;
+    font-size: 18px;
+    transition-property: color;
+    transition-duration: 300ms;
+}
+.admin-menu li:hover{
+    cursor: pointer;
+    color: #ad6d0c;
+}
+
+.settings-section{
+    position: relative;
+    width: 90%;
+    left: 5%;    
+}
+.split-line{    
+    border-bottom: 5px solid #A0A9B1;
+	border-radius: 12px;
+}
+.settings-hint{
+    box-sizing: border-box;
+    width: 100%;
+    background: #FFF0F5;
+    margin-top: 2px;
+    font-size: 13px;
+    font-style: italic;
+}
+.settings-input{
+    width: 30%;
+    border-radius: 3px;
 }

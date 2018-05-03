@@ -17,15 +17,10 @@
             <li><a>Помощь</a>
             <li><a>Информация</a>
         </ul>
-        <div class='circle-admin-avatar'><span class='admin-name'>A</span></div>
+        <admin-avatar-directive></admin-avatar-directive>
     </div>
     <div class="page-body">
-        <form action="/Admins/EditAdmin" method="post">
-            <br><br>
-            <input placeholder="Пароль" name="password">
-            <br><br>
-            <button type="submit"/>Изменить
-        </form>
+        <settings-directive></settings-directive>
     </div>
 </body>
 </html>

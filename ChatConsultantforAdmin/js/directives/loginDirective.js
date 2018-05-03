@@ -93,16 +93,21 @@ define(function () {
                 $scope.userEnter = function() {  
                     if ((document.getElementById('login').value != "") && (document.getElementById('password').value != "")){    
                         $http.get('/Admins/AdminEnter', { params: { login: document.getElementById('login').value, password: document.getElementById('password').value } }, config)
-                        .then(function (response) {
-                            if (response.data == 'Успешный вход'){
-                                window.location.href = '/Clients/Index';
-                            }
-                            else{
-                                window.alert(response.data);
-                            }                        
-                        }, function (error) {
-                            errorFn();
-                        });                
+                            .then(function (response) {
+                                if (response.data == 'Успешный вход'){
+                                    $http.post('/Admins/ChangeStatus', { login: document.getElementById('login').value, status: true }, config)
+                                        .then(function () {
+                                            window.location.href = '/Clients/Index';
+                                        }, function (error) {
+                                            console.log("Ошибка: " + error);
+                                        });                                    
+                                }
+                                else{
+                                    window.alert(response.data);
+                                }                        
+                            }, function (error) {
+                                errorFn();
+                            });                
                     }   
                     else{
                         window.alert("Введите, пожалуйста, Ваши данные");
