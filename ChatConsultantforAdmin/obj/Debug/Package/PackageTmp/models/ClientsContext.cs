@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using System.Globalization;
 
 namespace ChatConsultantforAdmin.models
 {
@@ -18,6 +19,7 @@ namespace ChatConsultantforAdmin.models
     {
         IEnumerable<Clients> List();
         void SetLastMsg(string msgTo, DateTime date);
+        void NewClient(Clients client);
     }
 
     public class ClientsRepository : IDisposable, ClntRepository
@@ -33,6 +35,16 @@ namespace ChatConsultantforAdmin.models
         {
             var nedeedClient = db.Clients.Where(x => x.name == msgTo).FirstOrDefault();
             nedeedClient.last_message = date;
+            db.SaveChanges();
+        }
+
+        public void NewClient(Clients client)
+        {
+            CultureInfo provider = CultureInfo.GetCultureInfo("ru-RU");
+            var date = DateTime.Now;
+            client.last_message = DateTime.Parse(date.ToString(), provider);
+
+            db.Clients.Add(client);
             db.SaveChanges();
         }
 

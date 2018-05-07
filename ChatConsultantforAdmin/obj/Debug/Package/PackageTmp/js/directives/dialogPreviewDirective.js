@@ -3,7 +3,7 @@ define(function () {
     var directiveModule = angular.module('dialogPreviewDirective', []);
 
     directiveModule.directive('dialogPreviewDirective',  function (selectUserFac) {
-        var uID = 0;
+        var uID = 3;
         return {
             restrict: 'EACM',
             template:				
@@ -46,20 +46,21 @@ define(function () {
 
                     var previews = document.getElementsByName("dialogPreview");
                     previews.forEach(function (item, i, arr) {
-                        item.style.background = "#FFFFFF";                                
+                        item.setAttribute("class", "user-dialog-preview");;    
                     });
-                    document.getElementById("preview" + ($scope.$id -1)).style.background = "#DCDCDC";
+                    document.getElementById("preview" + ($scope.$id)).setAttribute("class", "user-dialog-preview-selected");;
                 }
             },
             link: function (scope, element, attrs) {
-                uID += 1;
                 document.getElementById("avatarCircle").id = "avatarCircle" + uID;
-                document.getElementById("preview").id = "preview" + uID;
+                document.getElementById("preview").id = "preview" + uID;                                
 
                 var colors = ["#ff0000", "#9fff00", "#f1e50f", "#8a81ff", "#ee95d9", "#7397D4", "#71a7a5", "#624545", "#e18022", "#A0A9B1", "#c8b34e", "#f3e0e0", "#AD9999", "#0dffe9", "#ffac00", "#00ff00"];
                 var avatarCircle = document.getElementById("avatarCircle" + uID);             
                 var clrId = Math.floor(Math.random() * colors.length);
                 avatarCircle.style.backgroundColor = colors[clrId];
+
+                uID += 1;
             }
         }
     });

@@ -106,7 +106,7 @@ define(function () {
                                     window.alert(response.data);
                                 }                        
                             }, function (error) {
-                                errorFn();
+                                console.log("Ошибка: " + error);
                             });                
                     }   
                     else{
@@ -145,13 +145,9 @@ define(function () {
                                 $scope.switchPopup(2);
                             }
                         }, function (error) {
-                            errorFn();
+                            console.log("Ошибка: " + error);
                         });
                 }
-
-                function errorFn() {
-                    console.log("error");
-                };
             },
             link: function (scope, element, attrs) {
             }

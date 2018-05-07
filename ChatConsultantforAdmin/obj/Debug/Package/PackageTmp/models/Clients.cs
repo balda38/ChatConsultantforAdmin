@@ -10,6 +10,7 @@ namespace ChatConsultantforAdmin.models
     {
         public int id { get; set; }
         public string name { get; set; }
+        public string site { get; set; }
         public string admin { get; set; }
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "hh:mm:ss dd.MM.yyyy", ApplyFormatInEditMode = true)]
