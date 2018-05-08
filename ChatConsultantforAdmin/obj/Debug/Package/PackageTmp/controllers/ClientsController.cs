@@ -14,7 +14,6 @@ namespace ChatConsultantforAdmin.controllers
     {
         ClntRepository repository1;
         AdmRepository repository2;
-        string authAdmin;
 
         public ClientsController(ClntRepository repo1, AdmRepository repo2)
         {
@@ -22,9 +21,9 @@ namespace ChatConsultantforAdmin.controllers
             repository2 = repo2;
         }
         // GET: Message
-        public ActionResult Index()
+        public ActionResult Index(string admin)
         {
-            return View(repository1.List(authAdmin));
+            return View(repository1.List(admin));
         }
 
         public JsonResult NewClient(string name, string site)
@@ -41,16 +40,6 @@ namespace ChatConsultantforAdmin.controllers
             repository1.NewClient(client);
 
             return Json("done");
-        }
-
-        [HttpPost]
-        public JsonResult ChangeStatus(string login, bool status)
-        {
-            JsonResult jsonMsg = Json("done");
-
-            repository2.ChangeStatus(login, status);
-            authAdmin = login;
-            return jsonMsg;
         }
     }
 }
