@@ -40,7 +40,8 @@ define(function () {
                     data.msgTo = selectUserFac.user;
                     $scope.dialogHeader = selectUserFac.user;
 
-                    $http.get('/Messages/SetClient', { params: { client: data.msgTo } }, config)
+                    setInterval(function(){
+                        $http.get('/Messages/SetClient', { params: { client: data.msgTo } }, config)
                         .then(function (response) {
                             ul.innerHTML = "";
 
@@ -56,7 +57,9 @@ define(function () {
                             document.getElementById('dialogHeader').style.opacity = 1;
                         }, function (error) {
                             errorFn();
-                        });                    
+                        });      
+                    }, 5000);
+                                  
                 })                  
                 
                 $scope.sendMessage = function (e) {

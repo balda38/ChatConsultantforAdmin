@@ -125,6 +125,6 @@ F:\Users\aldui\Desktop\chat-consultant-4-admin\ChatConsultantforAdmin\bin\System
 F:\Users\aldui\Desktop\chat-consultant-4-admin\ChatConsultantforAdmin\bin\System.Web.WebPages.xml
 F:\Users\aldui\Desktop\chat-consultant-4-admin\ChatConsultantforAdmin\bin\System.Web.WebPages.Deployment.xml
 F:\Users\aldui\Desktop\chat-consultant-4-admin\ChatConsultantforAdmin\bin\System.Web.WebPages.Razor.xml
-F:\Users\aldui\Desktop\chat-consultant-4-admin\ChatConsultantforAdmin\obj\Debug\ChatConsultantforAdmin.csprojResolveAssemblyReference.cache
 F:\Users\aldui\Desktop\chat-consultant-4-admin\ChatConsultantforAdmin\obj\Debug\ChatConsultantforAdmin.dll
 F:\Users\aldui\Desktop\chat-consultant-4-admin\ChatConsultantforAdmin\obj\Debug\ChatConsultantforAdmin.pdb
+F:\Users\aldui\Desktop\chat-consultant-4-admin\ChatConsultantforAdmin\obj\Debug\ChatConsultantforAdmin.csprojResolveAssemblyReference.cache
