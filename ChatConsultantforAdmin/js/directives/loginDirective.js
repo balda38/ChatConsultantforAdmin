@@ -97,7 +97,7 @@ define(function () {
                                 if (response.data == 'Успешный вход'){
                                     $http.post('/Admins/ChangeStatus', { login: document.getElementById('login').value, status: true }, config)
                                         .then(function () {
-                                            window.location.href = '/Clients/Index';
+                                            window.location.href = '/Clients/Index?Admin=' + document.getElementById('login').value;
                                         }, function (error) {
                                             console.log("Ошибка: " + error);
                                         });                                    

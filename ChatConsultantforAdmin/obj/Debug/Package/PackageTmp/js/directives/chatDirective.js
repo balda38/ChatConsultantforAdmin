@@ -45,7 +45,7 @@ define(function () {
                             ul.innerHTML = "";
 
                             response.data.forEach(function (item, i, arr) {
-                                updateList(item.msgText, item.date);                                
+                                updateList(item.msgText, item.date, item.msgFrom);                                
                             });
                             scrollToDown();
                             
@@ -75,18 +75,20 @@ define(function () {
                     };
                 };
 
-                function updateList(text, date) {
+                function updateList(text, date, msgFrom) {
                     var li = document.createElement('li');
                     var br = document.createElement('br');
                     var span = document.createElement('span');
-                    li.setAttribute('class', 'admin-message-cloud');
+                    if(msgFrom == data.msgFrom) li.setAttribute('class', 'admin-message-cloud');
+                    else li.setAttribute('class', 'user-message-cloud');                    
                     br.setAttribute('style', 'clear: both');
                     li.appendChild(document.createTextNode(text));
                     ul.appendChild(li);
                     ul.appendChild(br);
                     span.innerHTML = toJavaScriptDate(date);
                     span.setAttribute('style', 'clear: both');
-                    span.setAttribute('class', 'message-date');
+                    if(msgFrom == data.msgFrom) span.setAttribute('class', 'admin-message-date');
+                    else span.setAttribute('class', 'user-message-date');
                     ul.appendChild(span);
                     ul.appendChild(br);
                 }

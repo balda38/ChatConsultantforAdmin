@@ -21,9 +21,9 @@ namespace ChatConsultantforAdmin.controllers
             repository2 = repo2;
         }
         // GET: Message
-        public ActionResult Index()
+        public ActionResult Index(string admin)
         {
-            return View(repository1.List());
+            return View(repository1.List(admin));
         }
 
         public JsonResult NewClient(string name, string site)
@@ -35,7 +35,7 @@ namespace ChatConsultantforAdmin.controllers
             client.site = site;
 
             //Random rnd = new Random();
-            client.admin = "topadmin";
+            client.admin = "admin1";
 
             repository1.NewClient(client);
 

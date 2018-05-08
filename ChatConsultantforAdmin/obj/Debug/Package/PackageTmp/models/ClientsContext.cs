@@ -17,7 +17,7 @@ namespace ChatConsultantforAdmin.models
 
     public interface ClntRepository
     {
-        IEnumerable<Clients> List();
+        IEnumerable<Clients> List(string admin);
         void SetLastMsg(string msgTo, DateTime date);
         void NewClient(Clients client);
     }
@@ -26,9 +26,9 @@ namespace ChatConsultantforAdmin.models
     {
         private ClientsContext db = new ClientsContext();
 
-        public IEnumerable<Clients> List()
+        public IEnumerable<Clients> List(string admin)
         {
-            return db.Clients.OrderByDescending(x => x.last_message);
+            return db.Clients.OrderByDescending(x => x.last_message).Where(x => x.admin == admin);
         }
 
         public void SetLastMsg(string msgTo, DateTime date)

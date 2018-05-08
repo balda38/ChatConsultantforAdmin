@@ -43,7 +43,7 @@ define(function () {
                 }   
 
                 $scope.userExit = function(){
-                    $http.post('/Admins/ChangeStatus', { login: adminLogin, status: false }, config)
+                    $http.post('/Clients/ChangeStatus', { login: adminLogin, status: false }, config)
                         .then(function () {
                             window.location.href = '/Admins/Index';
                         }, function (error) {

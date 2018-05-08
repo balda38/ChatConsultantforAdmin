@@ -39,7 +39,7 @@ namespace ChatConsultantforAdmin.models
 
         public IEnumerable<DialogsMessages> SetClient(string client)
         {
-            return db.DialogsMessages.Where(x => x.msgTo == client).ToList();
+            return db.DialogsMessages.Where(x => (x.msgTo == client) || (x.msgFrom == client)).ToList();
         }
 
         protected void Dispose(bool disposing)

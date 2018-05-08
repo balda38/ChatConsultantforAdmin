@@ -39,7 +39,7 @@ namespace ChatConsultantforAdmin.controllers
                 newMsg.date = DateTime.Parse(date.ToString(), provider);
 
                 repository1.Save(newMsg);
-                repository2.SetLastMsg(newMsg.msgTo, newMsg.date);
+                repository2.SetLastMsg(newMsg.msgFrom, newMsg.date);
 
                 jsonMsg = Json(newMsg.date, JsonRequestBehavior.AllowGet);
             }                      

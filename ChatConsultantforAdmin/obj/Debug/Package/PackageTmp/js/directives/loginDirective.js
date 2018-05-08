@@ -95,7 +95,7 @@ define(function () {
                         $http.get('/Admins/AdminEnter', { params: { login: document.getElementById('login').value, password: document.getElementById('password').value } }, config)
                             .then(function (response) {
                                 if (response.data == 'Успешный вход'){
-                                    $http.post('/Admins/ChangeStatus', { login: document.getElementById('login').value, status: true }, config)
+                                    $http.post('/Clients/ChangeStatus', { login: document.getElementById('login').value, status: true }, config)
                                         .then(function () {
                                             window.location.href = '/Clients/Index';
                                         }, function (error) {
