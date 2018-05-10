@@ -18,7 +18,7 @@ namespace ChatConsultantforAdmin.models
     public interface ClntRepository
     {
         IEnumerable<Clients> List(string admin);
-        void SetLastMsg(string msgTo, DateTime date);
+        void SetLastMsg(DialogsMessages msg, string role);
         void NewClient(Clients client);
     }
 
@@ -31,10 +31,19 @@ namespace ChatConsultantforAdmin.models
             return db.Clients.OrderByDescending(x => x.last_message).Where(x => x.admin == admin);
         }
 
-        public void SetLastMsg(string msgTo, DateTime date)
+        public void SetLastMsg(DialogsMessages msg, string role)
         {
-            var nedeedClient = db.Clients.Where(x => x.name == msgTo).FirstOrDefault();
-            nedeedClient.last_message = date;
+            if (role == "client")
+            {
+                var nedeedClient = db.Clients.Where(x => x.name == msg.msgFrom).FirstOrDefault();
+                nedeedClient.last_message = msg.date;
+            }
+            else
+            {
+                var nedeedClient = db.Clients.Where(x => x.name == msg.msgTo).FirstOrDefault();
+                nedeedClient.last_message = msg.date;
+            }
+
             db.SaveChanges();
         }
 

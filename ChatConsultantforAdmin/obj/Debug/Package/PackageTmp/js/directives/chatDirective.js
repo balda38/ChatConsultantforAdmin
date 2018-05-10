@@ -68,7 +68,7 @@ define(function () {
                         if (msg.value != "") {   
                             data.msgText = msg.value;   
                             var d = new Date();                          
-                            $http.post('/Messages/AddMessage', { newMsg: data }, config)
+                            $http.post('/Messages/AddMessage', { newMsg: data, role: "admin" }, config)
                                 .then(function (response) {
                                     successPostMessageFn(response.data);
                                 }, function (error) {
@@ -116,8 +116,8 @@ define(function () {
                     else return dateComponent;
                 }
 
-                function successPostMessageFn(date) {                   
-                    updateList(msg.value, date);
+                function successPostMessageFn(data) {                   
+                    updateList(msg.value, data.date, data.msgFrom);
                     msg.value = "";
 
                     scrollToDown();

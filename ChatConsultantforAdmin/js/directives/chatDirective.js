@@ -42,19 +42,20 @@ define(function () {
 
                     setInterval(function(){
                         $http.get('/Messages/SetClient', { params: { client: data.msgTo } }, config)
-                        .then(function (response) {
-                            ul.innerHTML = "";
+                        .then(function (response) {                            
+                            if(response.data[response.data.length - 1].msgText != lastMessage){
+                                ul.innerHTML = "";
 
-                            response.data.forEach(function (item, i, arr) {
-                                updateList(item.msgText, item.date, item.msgFrom);                                
-                            });
-                            scrollToDown();
-                            
-                            if (document.getElementById('userMessage').style.opacity == 0){
-                                document.getElementById('hint').remove();
-                            }                            
-                            document.getElementById('userMessage').style.opacity = 1;
-                            document.getElementById('dialogHeader').style.opacity = 1;
+                                response.data.forEach(function (item, i, arr) {
+                                    updateList(item.msgText, item.date, item.msgFrom);                                
+                                });                                   
+     
+                                if (document.getElementById('userMessage').style.opacity == 0){
+                                    document.getElementById('hint').remove();
+                                }                            
+                                document.getElementById('userMessage').style.opacity = 1;
+                                document.getElementById('dialogHeader').style.opacity = 1;
+                            }     
                         }, function (error) {
                             errorFn();
                         });      
@@ -68,7 +69,7 @@ define(function () {
                         if (msg.value != "") {   
                             data.msgText = msg.value;   
                             var d = new Date();                          
-                            $http.post('/Messages/AddMessage', { newMsg: data }, config)
+                            $http.post('/Messages/AddMessage', { newMsg: data, role: "admin" }, config)
                                 .then(function (response) {
                                     successPostMessageFn(response.data);
                                 }, function (error) {
@@ -78,12 +79,15 @@ define(function () {
                     };
                 };
 
+                var lastMessage = undefined;
+
                 function updateList(text, date, msgFrom) {
                     var li = document.createElement('li');
                     var br = document.createElement('br');
                     var span = document.createElement('span');
-                    if(msgFrom == data.msgFrom) li.setAttribute('class', 'admin-message-cloud');
-                    else li.setAttribute('class', 'user-message-cloud');                    
+                    if(msgFrom == data.msgFrom) li.setAttribute('class', 'admin-message-cloud');                    
+                    else li.setAttribute('class', 'user-message-cloud');    
+                    lastMessage = text;                
                     br.setAttribute('style', 'clear: both');
                     li.appendChild(document.createTextNode(text));
                     ul.appendChild(li);
@@ -94,6 +98,8 @@ define(function () {
                     else span.setAttribute('class', 'user-message-date');
                     ul.appendChild(span);
                     ul.appendChild(br);
+
+                    scrollToDown();
                 }
 
                 function toJavaScriptDate(value) {
@@ -116,11 +122,9 @@ define(function () {
                     else return dateComponent;
                 }
 
-                function successPostMessageFn(date) {                   
-                    updateList(msg.value, date);
+                function successPostMessageFn(data) {                   
+                    updateList(msg.value, data.date, data.msgFrom);
                     msg.value = "";
-
-                    scrollToDown();
 
                     console.log("success");
                 };

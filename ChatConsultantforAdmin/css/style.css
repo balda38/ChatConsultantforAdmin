@@ -224,7 +224,8 @@
 	float: left;
 	margin: 10px;
     margin-bottom: 0px;
-    padding: 5px 10px;
+    margin-right: 100px;
+    padding: 10px;
 	text-align: left;
 	font-family: 'Jura', sans-serif; 
     background: #4DEFA9;
@@ -238,7 +239,8 @@
 	float: right; 
 	margin: 10px;
     margin-bottom: 0px;
-    padding: 5px 10px;
+    margin-left: 100px;
+    padding: 10px;
 	text-align: right; 
 	font-family: 'Jura', sans-serif;
 	background: #7397D4;

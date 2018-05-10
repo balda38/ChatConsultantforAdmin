@@ -128,8 +128,9 @@
     position: absolute;
     top: 10%;
     width: 100%;
-    left: 10px;
+    left: 68px;
     font-size: 16px;
+    text-align: left;
 }
 .dialog-date {
     position: absolute;

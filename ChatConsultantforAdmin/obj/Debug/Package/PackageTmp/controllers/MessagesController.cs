@@ -28,7 +28,7 @@ namespace ChatConsultantforAdmin.controllers
         }
 
         [HttpPost]
-        public JsonResult AddMessage(DialogsMessages newMsg)
+        public JsonResult AddMessage(DialogsMessages newMsg, string role)
         {
             JsonResult jsonMsg = Json("");                    
 
@@ -39,9 +39,9 @@ namespace ChatConsultantforAdmin.controllers
                 newMsg.date = DateTime.Parse(date.ToString(), provider);
 
                 repository1.Save(newMsg);
-                repository2.SetLastMsg(newMsg.msgFrom, newMsg.date);
+                repository2.SetLastMsg(newMsg, role);
 
-                jsonMsg = Json(newMsg.date, JsonRequestBehavior.AllowGet);
+                jsonMsg = Json(newMsg, JsonRequestBehavior.AllowGet);
             }                      
 
             return jsonMsg;
@@ -53,6 +53,14 @@ namespace ChatConsultantforAdmin.controllers
             var clientMessages = repository1.SetClient(client);
 
             return Json(clientMessages, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetLastAdminMessage(string client)
+        {
+            var lastMsg = repository1.List().Where(x => x.msgTo == client).Last().msgText;
+
+            return Json(lastMsg, JsonRequestBehavior.AllowGet);
         }
     }
 }
