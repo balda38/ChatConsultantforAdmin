@@ -7,7 +7,7 @@ define(function () {
         return {
             restrict: 'EACM',
             template:				
-                "<div class='user-dialog-preview' id='preview' name='dialogPreview' ng-click='selectUser()'>" +
+                "<div ng-click='selectUser()'>" +
                     "<div class='circle-user-avatar' id='avatarCircle'><span class='avatar-name'>{{userNameFirstLetter}}</span></div>" +
                     "<span class='dialog-user-name'>{{userName}}</span>" +
                     "<span class='dialog-date'>Последнее сообщение: <br> {{zoneDT}}</span>" +
@@ -16,17 +16,27 @@ define(function () {
                 userName: '@',
 				lastMsgDT: '@'
             },
-            controller: function ($scope, $attrs) {
+            controller: function ($scope, $attrs, $compile) {
                 $scope.userNameFirstLetter = $scope.userName.charAt(0);
+                
+                $scope.zoneDT = toJavaScriptDateFromServer($scope.lastMsgDT);
 
-                $scope.zoneDT = toJavaScriptDate($scope.lastMsgDT);
-
-                function toJavaScriptDate(value) { 
+                function toJavaScriptDateFromServer(value) { 
                     var dataComponents = value.split(/\.| |:/); 
                     var dt = new Date(dataComponents[2], dataComponents[1], dataComponents[0], dataComponents[3], dataComponents[4], dataComponents[5]);
                     var d = new Date();
                     dt.setMinutes(dt.getMinutes() - d.getTimezoneOffset());
   
+                    return addZeros(dt.getHours()) + ":" + addZeros(dt.getMinutes()) + ":" + addZeros(dt.getSeconds()) + " " + addZeros(dt.getDate()) + "." + addZeros(dt.getMonth()) + "." + dt.getFullYear();
+                }
+
+                function toJavaScriptDateFromFactory(value) {
+                    var dt = undefined;
+                    var regexp = /Date\(([^)]+)\)/;
+
+                    var results = regexp.exec(value);
+                    dt = new Date(parseFloat(results[1]));                
+
                     return addZeros(dt.getHours()) + ":" + addZeros(dt.getMinutes()) + ":" + addZeros(dt.getSeconds()) + " " + addZeros(dt.getDate()) + "." + addZeros((dt.getMonth() + 1)) + "." + dt.getFullYear();
                 }
 
@@ -35,9 +45,14 @@ define(function () {
                     else return dateComponent;
                 }
 
+                var list = document.getElementById("list");
+                console.log(list)
                 $scope.$on('msgDateEvent', function () {
-                    if($scope.userName == selectUserFac.user){
-                        $scope.lastMsgDT = toJavaScriptDate(selectUserFac.lastDate);
+                    if($scope.userName == selectUserFac.user){    
+                        $scope.zoneDT = toJavaScriptDateFromFactory(selectUserFac.lastDate);
+                        
+                        var li = document.getElementById("preview" + $scope.$id);
+                        list.insertBefore(li, list.childNodes[0]);                     
                     };                                 
                 })  
 

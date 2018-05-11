@@ -42,20 +42,23 @@ define(function () {
 
                     setInterval(function(){
                         $http.get('/Messages/SetClient', { params: { client: data.msgTo } }, config)
-                        .then(function (response) {                            
-                            if(response.data[response.data.length - 1].msgText != lastMessage){
-                                ul.innerHTML = "";
+                        .then(function (response) {    
+                            if(response.data.length != 0){  
+                                if(response.data[response.data.length - 1].msgText != lastMessage){  
+                                    ul.innerHTML = "";
+                                    
+                                    response.data.forEach(function (item, i, arr) {
+                                        updateList(item.msgText, item.date, item.msgFrom);                                
+                                    });                                  
+                                }     
+                            }   
+                            else ul.innerHTML = "";
 
-                                response.data.forEach(function (item, i, arr) {
-                                    updateList(item.msgText, item.date, item.msgFrom);                                
-                                });                                   
-     
-                                if (document.getElementById('userMessage').style.opacity == 0){
-                                    document.getElementById('hint').remove();
-                                }                            
-                                document.getElementById('userMessage').style.opacity = 1;
-                                document.getElementById('dialogHeader').style.opacity = 1;
-                            }     
+                            if (document.getElementById('userMessage').style.opacity == 0){
+                                document.getElementById('hint').remove();
+                            }                            
+                            document.getElementById('userMessage').style.opacity = 1;
+                            document.getElementById('dialogHeader').style.opacity = 1;
                         }, function (error) {
                             errorFn();
                         });      
@@ -72,6 +75,7 @@ define(function () {
                             $http.post('/Messages/AddMessage', { newMsg: data, role: "admin" }, config)
                                 .then(function (response) {
                                     successPostMessageFn(response.data);
+                                    selectUserFac.setLastMessage(response.data.date);
                                 }, function (error) {
                                     errorFn(error);
                                 });

@@ -18,6 +18,7 @@ define(function(){
 		};
 
 		messageTo.setLastMessage = function (date){
+			
 			this.lastDate = date;
 			this.broadcastingDate();
 		};

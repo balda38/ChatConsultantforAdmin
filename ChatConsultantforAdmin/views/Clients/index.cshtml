@@ -25,11 +25,13 @@
             <tr style="width: 100%;">
                 <th class="dialog-column">
                     <div class="dialog-column-scroll">
-                    @{  foreach (var item in Model)
-                        {
-                            <dialog-preview-directive user-name="@item.name" last-msg-d-t="@item.last_message"></dialog-preview-directive>
-                        }
-                    }    
+                        <ul id="list" class="dialogs">
+                        @{  foreach (var item in Model)
+                            {
+                                <li class='user-dialog-preview' id='preview' name='dialogPreview'><dialog-preview-directive user-name="@item.name" last-msg-d-t="@item.last_message" id="dlgPrv"></dialog-preview-directive></li>                                
+                            }
+                        }    
+                        </ul>
                     </div>          
                 </th>
                 <th style="width: 80%;">
