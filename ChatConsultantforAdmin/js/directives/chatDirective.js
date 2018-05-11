@@ -49,7 +49,9 @@ define(function () {
                                     
                                     response.data.forEach(function (item, i, arr) {
                                         updateList(item.msgText, item.date, item.msgFrom);                                
-                                    });                                  
+                                    });
+                                    
+                                    selectUserFac.setLastMessage(response.data[response.data.length - 1].date);
                                 }     
                             }   
                             else ul.innerHTML = "";
