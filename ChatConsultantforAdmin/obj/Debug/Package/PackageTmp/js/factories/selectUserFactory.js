@@ -17,7 +17,7 @@ define(function(){
 			$rootScope.$broadcast('msgToEvent');
 		};
 
-		messageTo.setLastMessage = function (date){
+		messageTo.setLastMessage = function (date){			
 			this.lastDate = date;
 			this.broadcastingDate();
 		};

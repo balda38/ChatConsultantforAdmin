@@ -26,6 +26,7 @@ namespace ChatConsultantforAdmin.controllers
             return View(repository1.List(admin));
         }
 
+        [HttpPost]
         public JsonResult NewClient(string name, string site)
         {
             var admins = repository2.List().Where(x => x.status == true);
@@ -40,6 +41,12 @@ namespace ChatConsultantforAdmin.controllers
             repository1.NewClient(client);
 
             return Json("done");
+        }
+
+        [HttpGet]
+        public JsonResult GetClients(string admin)
+        {
+            return Json(repository1.List(admin), JsonRequestBehavior.AllowGet);
         }
     }
 }
