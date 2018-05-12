@@ -3,8 +3,6 @@ define(function () {
     var directiveModule = angular.module('dialogPreviewDirective', []);
 
     directiveModule.directive('dialogPreviewDirective',  function (selectUserFac) {
-        var uID = 3;
-        var clients = [];
         return {
             restrict: 'EACM',
             template:				
@@ -29,7 +27,7 @@ define(function () {
                     .then(function (response) {  
                         if(response.data.length != list.childNodes.length){
                             list.innerHTML = "";
-
+                            
                             response.data.forEach(function (item, i, arr) {
                                 var li = document.createElement("li");
                                 li.setAttribute("class", "user-dialog-preview");      
@@ -53,6 +51,7 @@ define(function () {
                                 
                                 var span3 = document.createElement("span");       
                                 span3.setAttribute("class", "dialog-date");
+                                span3.id = "date" + id;
                                 span3.innerHTML = "Последнее сообщение: <br> " + toJavaScriptDateFromFactory(item.last_message); 
                                 
                                 li.appendChild(div);      
@@ -95,14 +94,21 @@ define(function () {
                     else return dateComponent;
                 }                               
 
-                // $scope.$on('msgDateEvent', function () {
-                //     if($scope.userName == selectUserFac.user){    
-                //         $scope.zoneDT = toJavaScriptDateFromFactory(selectUserFac.lastDate);
-                        
-                //         var li = document.getElementById("preview" + $scope.$id);
-                //         list.insertBefore(li, list.childNodes[0]);                     
-                //     };                                 
-                // })  
+                $scope.$on('msgDateEvent', function () {                     
+                   $http.get('/Clients/GetClientID', { params: { name: selectUserFac.user, admin: "admin1" } }, config)                   
+                        .then(function (response) {
+                            var splt = document.getElementById("date" + response.data).innerHTML.split(" ");
+                            var nDate = splt[3] + " " + splt[4];
+                            if((nDate !== toJavaScriptDateFromFactory(selectUserFac.lastDate)) && (response.data != 0)){                              
+                                var li = document.getElementById("preview" + response.data);
+                                li.children[2].innerHTML = "Последнее сообщение: <br> " + toJavaScriptDateFromFactory(selectUserFac.lastDate);
+                                $compile(li)($scope);
+                                list.insertBefore(li, list.childNodes[0]);                                   
+                            }
+                        }, function (error) {
+                            console.log("Ошибка: " + error)
+                        });                            
+                })  
 
                 $scope.selectUser = function(userName, nID){                 
                     selectUserFac.setUser(userName);

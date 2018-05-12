@@ -64,7 +64,7 @@ define(function () {
                         }, function (error) {
                             errorFn();
                         });      
-                    }, 5000);
+                    }, 100);
                                   
                 })                  
                 

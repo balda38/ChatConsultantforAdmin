@@ -4,7 +4,7 @@ define(function(){
 	
 	factoryModule.factory('selectUserFac', function($rootScope){		
 		var messageTo = {};
-		
+
 		messageTo.user = '';
 		messageTo.lastDate = '';
 
