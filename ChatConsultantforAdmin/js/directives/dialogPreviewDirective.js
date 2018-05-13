@@ -20,7 +20,6 @@ define(function () {
 
                 var list = document.getElementById("list"); 
                 var colors = ["#ff0000", "#9fff00", "#f1e50f", "#8a81ff", "#ee95d9", "#7397D4", "#71a7a5", "#624545", "#e18022", "#A0A9B1", "#c8b34e", "#f3e0e0", "#AD9999", "#0dffe9", "#ffac00", "#00ff00"];                
-                var id = 0;
 
                 setInterval(function(){
                     $http.get('/Clients/GetClients', { params: { admin: "admin1" } }, config)
@@ -29,6 +28,8 @@ define(function () {
                             list.innerHTML = "";
                             
                             response.data.forEach(function (item, i, arr) {
+                                var id = item.id - 1;
+
                                 var li = document.createElement("li");
                                 li.setAttribute("class", "user-dialog-preview");      
                                 li.setAttribute("ng-click", "selectUser('" + item.name + "', " + id + ")");
@@ -61,14 +62,12 @@ define(function () {
                                 $compile(li)($scope);
 
                                 list.appendChild(li);
-
-                                id++;
                             });     
                         }                   
                     }, function (error) {
                         console.log("Ошибка: " + error)
                     });      
-                }, 100);
+                }, 1000);
 
                 function toJavaScriptDateFromServer(value) { 
                     var dataComponents = value.split(/\.| |:/); 
@@ -92,24 +91,7 @@ define(function () {
                 function addZeros(dateComponent) {
                     if (dateComponent < 10) return '0' + dateComponent;
                     else return dateComponent;
-                }                               
-
-                $scope.$on('msgDateEvent', function () {                     
-                   $http.get('/Clients/GetClientID', { params: { name: selectUserFac.user, admin: "admin1" } }, config)                   
-                        .then(function (response) {
-                            var splt = document.getElementById("date" + response.data).innerHTML.split(" ");
-                            var nDate = splt[3] + " " + splt[4];
-                            if((nDate !== toJavaScriptDateFromFactory(selectUserFac.lastDate)) && (response.data != 0)){                              
-                                var li = document.getElementById("preview" + response.data);
-                                li.children[2].innerHTML = "Последнее сообщение: <br> " + toJavaScriptDateFromFactory(selectUserFac.lastDate);
-                                $compile(li)($scope);
-                                list.insertBefore(li, list.childNodes[0]);                                   
-                            }
-                        }, function (error) {
-                            console.log("Ошибка: " + error)
-                        });                            
-                })  
-
+                }        
                 $scope.selectUser = function(userName, nID){                 
                     selectUserFac.setUser(userName);
                     
@@ -119,6 +101,27 @@ define(function () {
 
                     document.getElementById("preview" + nID).setAttribute("class", "user-dialog-preview-selected");                    
                 }
+
+                $scope.$on('msgDateEvent', function () {  
+                    console.log(selectUserFac.user)                  
+                   $http.get('/Clients/GetClientID', { params: { name: selectUserFac.user, admin: "admin1" } }, config)                   
+                        .then(function (response) {
+                            console.log(response.data)   
+                            var splt = document.getElementById("date" + response.data).innerHTML.split(" ");
+                            var nDate = splt[3] + " " + splt[4];
+                            if(nDate !== toJavaScriptDateFromFactory(selectUserFac.lastDate)){      
+                                                     
+                                var li = document.getElementById("preview" + response.data);
+                                li.children[2].innerHTML = "Последнее сообщение: <br> " + toJavaScriptDateFromFactory(selectUserFac.lastDate);
+                                $compile(li)($scope);
+                                if(response.data != 0){
+                                    list.insertBefore(li, list.childNodes[0]);         
+                                }                                                          
+                            }
+                        }, function (error) {
+                            console.log("Ошибка: " + error)
+                        });                            
+                })  
             },
             link: function (scope, element, attrs) {
                 

@@ -42,19 +42,16 @@ define(function () {
 
                     setInterval(function(){
                         $http.get('/Messages/SetClient', { params: { client: data.msgTo } }, config)
-                        .then(function (response) {    
-                            if(response.data.length != 0){  
-                                if(response.data[response.data.length - 1].msgText != lastMessage){  
-                                    ul.innerHTML = "";
-                                    
-                                    response.data.forEach(function (item, i, arr) {
-                                        updateList(item.msgText, item.date, item.msgFrom);                                
-                                    });
-                                    
-                                    selectUserFac.setLastMessage(response.data[response.data.length - 1].date);
-                                }     
-                            }   
-                            else ul.innerHTML = "";
+                        .then(function (response) {   
+                            if(response.data[response.data.length - 1].msgText != lastMessage){  
+                                ul.innerHTML = "";
+
+                                response.data.forEach(function (item, i, arr) {
+                                    updateList(item.msgText, item.date, item.msgFrom);                                
+                                });
+                                
+                                //selectUserFac.setLastMessage(response.data[response.data.length - 1].date);
+                            }                                   
 
                             if (document.getElementById('userMessage').style.opacity == 0){
                                 document.getElementById('hint').remove();
@@ -64,7 +61,7 @@ define(function () {
                         }, function (error) {
                             errorFn();
                         });      
-                    }, 100);
+                    }, 1000);
                                   
                 })                  
                 
@@ -72,8 +69,7 @@ define(function () {
                     if (e.keyCode == 13) {
                         e.preventDefault();
                         if (msg.value != "") {   
-                            data.msgText = msg.value;   
-                            var d = new Date();                          
+                            data.msgText = msg.value;                         
                             $http.post('/Messages/AddMessage', { newMsg: data, role: "admin" }, config)
                                 .then(function (response) {
                                     successPostMessageFn(response.data);
@@ -129,7 +125,6 @@ define(function () {
                 }
 
                 function successPostMessageFn(data) {                   
-                    updateList(msg.value, data.date, data.msgFrom);
                     msg.value = "";
 
                     console.log("success");
