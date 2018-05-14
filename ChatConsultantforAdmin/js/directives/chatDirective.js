@@ -36,33 +36,35 @@ define(function () {
                     msgTo: undefined
                 }
 
+                var refreshMsg;
+
                 $scope.$on('msgToEvent', function () {
-                    data.msgTo = selectUserFac.user;
-                    $scope.dialogHeader = selectUserFac.user;
+                    if(selectUserFac.stat != "clnt"){
+                        data.msgTo = selectUserFac.user;
+                        $scope.dialogHeader = selectUserFac.user;
+                        clearInterval(refreshMsg);
 
-                    setInterval(function(){
-                        $http.get('/Messages/SetClient', { params: { client: data.msgTo } }, config)
-                        .then(function (response) {   
-                            if(response.data[response.data.length - 1].msgText != lastMessage){  
-                                ul.innerHTML = "";
+                        refreshMsg = setInterval(function(){
+                            $http.get('/Messages/SetClient', { params: { client: data.msgTo } }, config)
+                                .then(function (response) {   
+                                    if(response.data[response.data.length - 1].msgText != lastMessage){  
+                                        ul.innerHTML = "";
 
-                                response.data.forEach(function (item, i, arr) {
-                                    updateList(item.msgText, item.date, item.msgFrom);                                
-                                });
-                                
-                                //selectUserFac.setLastMessage(response.data[response.data.length - 1].date);
-                            }                                   
+                                        response.data.forEach(function (item, i, arr) {
+                                            updateList(item.msgText, item.date, item.msgFrom);                                
+                                        });
+                                    }                                   
 
-                            if (document.getElementById('userMessage').style.opacity == 0){
-                                document.getElementById('hint').remove();
-                            }                            
-                            document.getElementById('userMessage').style.opacity = 1;
-                            document.getElementById('dialogHeader').style.opacity = 1;
-                        }, function (error) {
-                            errorFn();
-                        });      
-                    }, 1000);
-                                  
+                                    if (document.getElementById('userMessage').style.opacity == 0){
+                                        document.getElementById('hint').remove();
+                                    }                            
+                                    document.getElementById('userMessage').style.opacity = 1;
+                                    document.getElementById('dialogHeader').style.opacity = 1;
+                                }, function (error) {
+                                    errorFn();
+                                });      
+                        }, 1000);
+                    }         
                 })                  
                 
                 $scope.sendMessage = function (e) {

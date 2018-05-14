@@ -48,5 +48,11 @@ namespace ChatConsultantforAdmin.controllers
         {
             return Json(repository1.List(admin), JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public JsonResult GetClientID(string name, string admin)
+        {
+            return Json(repository1.List(admin).Where(x => x.name == name).FirstOrDefault().id - 1, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -58,9 +58,13 @@ namespace ChatConsultantforAdmin.controllers
         [HttpGet]
         public JsonResult GetLastAdminMessage(string client)
         {
-            var lastMsg = repository1.List().Where(x => x.msgTo == client).Last().msgText;
+            return Json(repository1.List().Where(x => x.msgTo == client).Last().msgText, JsonRequestBehavior.AllowGet);
+        }
 
-            return Json(lastMsg, JsonRequestBehavior.AllowGet);
+        [HttpGet]
+        public JsonResult GetMsgCount(string client)
+        {
+            return Json(repository1.List().Where(x => x.msgFrom == client).Count(), JsonRequestBehavior.AllowGet);
         }
     }
 }

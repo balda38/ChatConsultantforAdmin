@@ -11,9 +11,9 @@
 /*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
-@import url("https://fonts.googleapis.com/css?family=Raleway:200,400,600|Jura");
+@import url("https://fonts.googleapis.com/css?family=Tinos");
 html {
-  font-family: 'Jura', sans-serif;
+  font-family: 'Tinos', serif;
   /* 1 */
   line-height: 1.15;
   /* 2 */
@@ -222,7 +222,7 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: 'Jura', sans-serif;
+  font-family: 'Tinos', serif;
   /* 1 */
   font-size: 100%;
   /* 1 */
@@ -942,7 +942,7 @@ pre {
  * Module
  */
 * {
-  font-family: 'Jura', sans-serif; }
+  font-family: 'Tinos', serif; }
 
 h1 {
   font-size: 2.2em;

@@ -37,43 +37,38 @@ define(function () {
                 }
 
                 $scope.$on('msgToEvent', function () {
-                    data.msgTo = selectUserFac.user;
-                    $scope.dialogHeader = selectUserFac.user;
+                    if(selectUserFac.stat != "clnt"){
+                        data.msgTo = selectUserFac.user;
+                        $scope.dialogHeader = selectUserFac.user;
 
-                    setInterval(function(){
-                        $http.get('/Messages/SetClient', { params: { client: data.msgTo } }, config)
-                        .then(function (response) {    
-                            if(response.data.length != 0){  
-                                if(response.data[response.data.length - 1].msgText != lastMessage){  
-                                    ul.innerHTML = "";
-                                    
-                                    response.data.forEach(function (item, i, arr) {
-                                        updateList(item.msgText, item.date, item.msgFrom);                                
-                                    });
-                                    
-                                    selectUserFac.setLastMessage(response.data[response.data.length - 1].date);
-                                }     
-                            }   
-                            else ul.innerHTML = "";
+                        setInterval(function(){
+                            $http.get('/Messages/SetClient', { params: { client: data.msgTo } }, config)
+                                .then(function (response) {   
+                                    if(response.data[response.data.length - 1].msgText != lastMessage){  
+                                        ul.innerHTML = "";
 
-                            if (document.getElementById('userMessage').style.opacity == 0){
-                                document.getElementById('hint').remove();
-                            }                            
-                            document.getElementById('userMessage').style.opacity = 1;
-                            document.getElementById('dialogHeader').style.opacity = 1;
-                        }, function (error) {
-                            errorFn();
-                        });      
-                    }, 5000);
-                                  
+                                        response.data.forEach(function (item, i, arr) {
+                                            updateList(item.msgText, item.date, item.msgFrom);                                
+                                        });
+                                    }                                   
+
+                                    if (document.getElementById('userMessage').style.opacity == 0){
+                                        document.getElementById('hint').remove();
+                                    }                            
+                                    document.getElementById('userMessage').style.opacity = 1;
+                                    document.getElementById('dialogHeader').style.opacity = 1;
+                                }, function (error) {
+                                    errorFn();
+                                });      
+                        }, 1000);
+                    }         
                 })                  
                 
                 $scope.sendMessage = function (e) {
                     if (e.keyCode == 13) {
                         e.preventDefault();
                         if (msg.value != "") {   
-                            data.msgText = msg.value;   
-                            var d = new Date();                          
+                            data.msgText = msg.value;                         
                             $http.post('/Messages/AddMessage', { newMsg: data, role: "admin" }, config)
                                 .then(function (response) {
                                     successPostMessageFn(response.data);
@@ -129,7 +124,6 @@ define(function () {
                 }
 
                 function successPostMessageFn(data) {                   
-                    updateList(msg.value, data.date, data.msgFrom);
                     msg.value = "";
 
                     console.log("success");
