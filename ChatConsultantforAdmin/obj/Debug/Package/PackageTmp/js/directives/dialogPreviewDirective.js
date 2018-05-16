@@ -37,7 +37,12 @@ define(function () {
                                     
                                     var li = document.createElement("li"); 
                                     if(loaded && (id == response.data.length)){
-                                        li.setAttribute("class", "news-user-dialog-preview");  
+                                        li.setAttribute("class", "news-user-dialog-preview"); 
+                                        var span =  document.createElement("span"); 
+                                        span.setAttribute("class", "new-message-alert");  
+                                        span.innerHTML = "Нов. сообщ.";
+                                        span.id = "newMsg" + id;
+                                        li.appendChild(span);
                                     }
                                     else{
                                         li.setAttribute("class", "user-dialog-preview");  
@@ -49,7 +54,10 @@ define(function () {
                                     var div = document.createElement("div");
                                     div.setAttribute("class", "circle-user-avatar");           
                                     var clrId = Math.floor(Math.random() * colors.length);
-                                    div.style.backgroundColor = colors[clrId];
+                                    div.style.background = "linear-gradient(to bottom right, " + colors[clrId] + ", #e0d15d)"
+
+                                    var div1 = document.createElement("div");
+                                    div1.setAttribute("class", "online-status");  
 
                                     var span1 = document.createElement("span");       
                                     span1.setAttribute("class", "avatar-name");    
@@ -65,9 +73,10 @@ define(function () {
                                     span3.id = "date" + id;
                                     span3.innerHTML = "Последнее сообщение: <br> " + toJavaScriptDateFromFactory(item.last_message); 
                                     
-                                    li.appendChild(div);      
+                                    li.appendChild(div);                                        
                                     li.appendChild(span2);  
                                     li.appendChild(span3); 
+                                    li.appendChild(div1); 
                                     
                                     $compile(li)($scope);
 
@@ -82,7 +91,8 @@ define(function () {
                                         });
                                     
                                 });  
-                                loaded = true;                                   
+                                loaded = true;  
+                                list.childNodes[0].children[3].style.background = "#00ff15";                                 
                             }
                             else{
                                 response.data.forEach(function (item, i, arr) {
@@ -94,10 +104,17 @@ define(function () {
                                         .then(function (response) {
                                             if(response.data != msgCounts.counts[msgCounts.names.indexOf(item.name)]){                                                
                                                 li.setAttribute("class", "news-user-dialog-preview");
+                                                
                                                 msgCounts.counts[msgCounts.names.indexOf(item.name)]++;
                                                 selectUserFac.setStat("clnt");
                                                 selectUserFac.setUser(item.name);
                                                 selectUserFac.setLastMessage(item.last_message);
+
+                                                var span =  document.createElement("span"); 
+                                                span.setAttribute("class", "new-message-alert");  
+                                                span.innerHTML = "Нов. сообщ.";
+                                                span.id = "newMsg" + id;
+                                                li.appendChild(span);
                                             }
                                         }, function (error) {
                                             console.log("Ошибка: " + error)
@@ -108,8 +125,6 @@ define(function () {
                         console.log("Ошибка: " + error)
                     });      
                 }, 1000);
-
-                
                 
                 function toJavaScriptDateFromServer(value) { 
                     var dataComponents = value.split(/\.| |:/); 
@@ -145,8 +160,11 @@ define(function () {
                             list.childNodes[i].setAttribute("class", "user-dialog-preview");    
                         }
                     }
-
-                    document.getElementById("preview" + nID).setAttribute("class", "user-dialog-preview-selected");                    
+                    
+                    document.getElementById("preview" + nID).setAttribute("class", "user-dialog-preview-selected");
+                    if(document.getElementById("newMsg" + nID)){
+                        document.getElementById("newMsg" + nID).remove(); 
+                    }                                        
                 }
 
                 $scope.$on('msgDateEvent', function () {             

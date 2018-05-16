@@ -33,7 +33,7 @@ define(function () {
             "</div>",    
             scope: {},
             controller: function ($scope, $attrs, $http) {
-                var adminLogin = "topadmin";
+                var adminLogin = sessionStorage.getItem("adminLogin");
 
                 var config = {
                     headers: {

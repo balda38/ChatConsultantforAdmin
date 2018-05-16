@@ -17,13 +17,8 @@ define(function () {
             controller: function ($scope, $attrs, $http) {
                 var msg = document.getElementById('userMessage');
                 var ul = document.getElementById('messages');
-                var chatWindow = document.getElementById('chat2');
-                $scope.userName = undefined;               
+                var chatWindow = document.getElementById('chat2');            
                 
-                var messageFrom = "admin1";
-                var messageTo = undefined;
-                                
-                //sessionStorage.getItem('admin'),
                 var config = {
                     headers: {
                         'Content-Type': 'application/json'
@@ -32,7 +27,7 @@ define(function () {
 
                 var data = {
                     msgText: undefined,
-                    msgFrom: "admin1",
+                    msgFrom: sessionStorage.getItem("adminLogin"),
                     msgTo: undefined
                 }
 

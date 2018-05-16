@@ -96,7 +96,9 @@ define(function () {
                             .then(function (response) {
                                 if (response.data == 'Успешный вход'){
                                     $http.post('/Admins/ChangeStatus', { login: document.getElementById('login').value, status: true }, config)
-                                        .then(function () {
+                                        .then(function (response) {
+                                            sessionStorage.setItem("adminName", response.data);
+                                            sessionStorage.setItem("adminLogin", document.getElementById('login').value);
                                             window.location.href = '/Clients/Index?Admin=' + document.getElementById('login').value;
                                         }, function (error) {
                                             console.log("Ошибка: " + error);
@@ -137,7 +139,7 @@ define(function () {
                     
                     $http.post('/Admins/NewAdmin', { admin: newAdmin }, config)
                         .then(function (response) {
-                            if(response.data == "Учетная запись администратора с таким именем уже существует"){
+                            if(response.data == "Учетная запись консультанта с таким логином уже существует"){
                                 window.alert(response.data);                                
                             }
                             else{

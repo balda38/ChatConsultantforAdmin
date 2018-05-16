@@ -27,7 +27,7 @@ define(function () {
                 };
 
                 setInterval(function(){
-                    $http.get('/Clients/GetClients', { params: { admin: "admin1" } }, config)
+                    $http.get('/Clients/GetClients', { params: { admin: sessionStorage.getItem("adminLogin") } }, config)
                         .then(function (response) {  
                             if(response.data.length != list.childNodes.length){
                                 list.innerHTML = "";
@@ -54,7 +54,10 @@ define(function () {
                                     var div = document.createElement("div");
                                     div.setAttribute("class", "circle-user-avatar");           
                                     var clrId = Math.floor(Math.random() * colors.length);
-                                    div.style.backgroundColor = colors[clrId];
+                                    div.style.background = "linear-gradient(to bottom right, " + colors[clrId] + ", #e0d15d)"
+
+                                    var div1 = document.createElement("div");
+                                    div1.setAttribute("class", "online-status");  
 
                                     var span1 = document.createElement("span");       
                                     span1.setAttribute("class", "avatar-name");    
@@ -70,9 +73,10 @@ define(function () {
                                     span3.id = "date" + id;
                                     span3.innerHTML = "Последнее сообщение: <br> " + toJavaScriptDateFromFactory(item.last_message); 
                                     
-                                    li.appendChild(div);      
+                                    li.appendChild(div);                                        
                                     li.appendChild(span2);  
                                     li.appendChild(span3); 
+                                    li.appendChild(div1); 
                                     
                                     $compile(li)($scope);
 
@@ -87,7 +91,8 @@ define(function () {
                                         });
                                     
                                 });  
-                                loaded = true;                                   
+                                loaded = true;  
+                                list.childNodes[0].children[3].style.background = "#00ff15";                                 
                             }
                             else{
                                 response.data.forEach(function (item, i, arr) {
@@ -120,8 +125,6 @@ define(function () {
                         console.log("Ошибка: " + error)
                     });      
                 }, 1000);
-
-                
                 
                 function toJavaScriptDateFromServer(value) { 
                     var dataComponents = value.split(/\.| |:/); 
@@ -159,11 +162,13 @@ define(function () {
                     }
                     
                     document.getElementById("preview" + nID).setAttribute("class", "user-dialog-preview-selected");
-                    document.getElementById("newMsg" + nID).remove();                     
+                    if(document.getElementById("newMsg" + nID)){
+                        document.getElementById("newMsg" + nID).remove(); 
+                    }                                        
                 }
 
                 $scope.$on('msgDateEvent', function () {             
-                   $http.get('/Clients/GetClientID', { params: { name: selectUserFac.user, admin: "admin1" } }, config)                   
+                   $http.get('/Clients/GetClientID', { params: { name: selectUserFac.user, admin: sessionStorage.getItem("adminLogin") } }, config)                   
                         .then(function (response) {
                             var splt = document.getElementById("date" + response.data).innerHTML.split(" ");
                             var nDate = splt[3] + " " + splt[4];

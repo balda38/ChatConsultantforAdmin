@@ -1,4 +1,8 @@
-﻿.page-body{
+﻿.main-body{
+    background: #f1f1f1;
+}
+.page-body{
+    background: #FFF;
 	position: absolute;
 	left: 10%;
     width: 80%;
@@ -131,6 +135,15 @@
     background: #f3e0e0;  
     cursor: pointer;
  }
+ .new-message-alert{
+    position: absolute;
+    top: 15%;
+    width: 100%;
+    left: 75%;
+    font-size: 11px;
+    font-style: italic;
+    text-align: left;
+ }
 .circle-user-avatar {
     width: 60px;
 	height: 60px;
@@ -200,7 +213,7 @@
 }
 .chat-frame{		
 	box-sizing: border-box;
-    border: 1px solid #A0A9B1;
+    border-left: 1px solid #A0A9B1;
     position: absolute;
     left: 20%;
     top: 5px;
@@ -291,11 +304,10 @@ ul.clear{
 
 .header{
     top: 0%;
-    left: 10%;
-    right: 10%;
+    width: 100%;
     position: fixed;
     z-index: 2;
-    background: rgb(119, 209, 141);
+    background: linear-gradient(to bottom right, #444643, #4994a1);
     height: 60px;
     margin: 0px, 10px, 10px, 10px;
 }
@@ -304,7 +316,7 @@ ul.clear{
     left: 3%;
     font-size: 26px;
     font-style: italic;
-    font-weight: bolder;
+    color: #ee9817;
 }
 .header-title:hover{
     cursor: pointer;
@@ -390,4 +402,16 @@ ul.clear{
 .settings-input{
     width: 30%;
     border-radius: 3px;
+}
+.online-status{
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    left: 45px;
+    width: 15px;
+	height: 15px;
+	background: #ff0000;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
 }

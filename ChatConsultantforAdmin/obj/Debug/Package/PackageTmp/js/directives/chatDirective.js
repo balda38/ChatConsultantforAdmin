@@ -36,12 +36,15 @@ define(function () {
                     msgTo: undefined
                 }
 
+                var refreshMsg;
+
                 $scope.$on('msgToEvent', function () {
                     if(selectUserFac.stat != "clnt"){
                         data.msgTo = selectUserFac.user;
                         $scope.dialogHeader = selectUserFac.user;
+                        clearInterval(refreshMsg);
 
-                        setInterval(function(){
+                        refreshMsg = setInterval(function(){
                             $http.get('/Messages/SetClient', { params: { client: data.msgTo } }, config)
                                 .then(function (response) {   
                                     if(response.data[response.data.length - 1].msgText != lastMessage){  

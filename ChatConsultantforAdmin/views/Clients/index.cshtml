@@ -10,17 +10,13 @@
     <link href="~/css/style.css" rel="stylesheet" />
     <script src="../../bower_components/requirejs/require.js" data-main="../../js/main"></script>    
 </head>
-<body>
+<body class="main-body">
     <div class="header">
-        <p class="header-title" onclick="returnToDialogs()">ChatConsultant</p>
-        <ul class="help-bar">
-            <li><a>Помощь</a>
-            <li><a>Информация</a>     
-        </ul>   
+        <p class="header-title" onclick="returnToDialogs()">ChatConsultant</p>        
         <admin-avatar-directive></admin-avatar-directive>
     </div>
     <div class="page-body">       
-        <p style="font-size: 18px; font-weight: bold;">Пользователи:</p>
+        <p style="font-size: 18px; font-weight: bold;">Диалоги:</p>
         <table style="width: 100%;" ng-app="chatConsultantForAdmin">
             <tr style="width: 100%;">
                 <th class="dialog-column">

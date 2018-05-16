@@ -1,4 +1,8 @@
-﻿.page-body{
+﻿.main-body{
+    background: #f1f1f1;
+}
+.page-body{
+    background: #FFF;
 	position: absolute;
 	left: 10%;
     width: 80%;
@@ -10,7 +14,7 @@
     width: 600px;
     height: 50px;
     max-height: 150px;
-    font-family: 'Tinos', serif;
+    font-family: 'Roboto', sans-serif;
 }
 .video-background{
     width: 100%;
@@ -187,7 +191,7 @@
 	margin: 10px;
     margin-top: 4px;
 	text-align: right; 
-	font-family: 'Tinos', serif;
+	font-family: 'Roboto', sans-serif;
     font-size: 11px;
     color: #A0A9B1;
 }
@@ -197,7 +201,7 @@
 	margin: 10px;
     margin-top: 4px;
 	text-align: left; 
-	font-family: 'Tinos', serif;
+	font-family: 'Roboto', sans-serif;
     font-size: 11px;
     color: #A0A9B1;
 }
@@ -209,7 +213,7 @@
 }
 .chat-frame{		
 	box-sizing: border-box;
-    border: 1px solid #A0A9B1;
+    border-left: 1px solid #A0A9B1;
     position: absolute;
     left: 20%;
     top: 5px;
@@ -235,7 +239,7 @@
 	border: 1px solid #A0A9B1;
 	margin: 4px;
 	resize: none;
-	font-family: 'Tinos', serif;
+	font-family: 'Roboto', sans-serif;
     opacity: 0;
 }
 .chat-window{
@@ -257,7 +261,7 @@
     margin-right: 100px;
     padding: 10px;
 	text-align: left;
-	font-family: 'Tinos', serif;
+	font-family: 'Roboto', sans-serif;
     background: #4DEFA9;
 	border: 1px solid #A0A9B1;
 	border-radius: 6px;
@@ -272,7 +276,7 @@
     margin-left: 100px;
     padding: 10px;
 	text-align: right; 
-	font-family: 'Tinos', serif;
+	font-family: 'Roboto', sans-serif;
 	background: #7397D4;
 	border: 1px solid #A0A9B1;
 	border-radius: 6px;
@@ -300,40 +304,34 @@ ul.clear{
 
 .header{
     top: 0%;
-    left: 10%;
-    right: 10%;
+    width: 100%;
     position: fixed;
     z-index: 2;
-    background: rgb(119, 209, 141);
+    background: linear-gradient(to bottom right, #444643, #4994a1);
     height: 60px;
-    margin: 0px, 10px, 10px, 10px;
 }
 .header-title{
-    position: absolute;
-    left: 3%;
+    width: 100px;
+    margin: auto;
+    margin-top: 15px;
     font-size: 26px;
     font-style: italic;
-    font-weight: bolder;
+    color: #ee9817;
 }
 .header-title:hover{
     cursor: pointer;
 }
-.help-bar{
+.admin-full-name{
     position: absolute;
-    top: 15px;
-    left: 70%;
-    list-style-type: none;
-    margin: 0;
-}
-.help-bar li{
-    display: inline;
-    margin-right: 10px;
-    font-size: 22px;
+    top: 20px;
+    left: 78%;
+    font-size: 20px;
+    color: #ee9817;
 }
 .circle-admin-avatar {
     position: absolute;
     top: 5px;
-    left: 94%;
+    left: 90%;
     width: 50px;
 	height: 50px;
 	background: #dcedf0;
@@ -358,7 +356,7 @@ ul.clear{
 	border-radius: 6px;
     position: absolute;
     top: 80%;
-    right: 0;
+    left: 85%;
     opacity: 0;
     pointer-events: none;
     background: #FFF;
@@ -377,6 +375,60 @@ ul.clear{
 .admin-menu li:hover{
     cursor: pointer;
     color: #ad6d0c;
+}
+.admin-status{
+    position: absolute;
+    top: 7px;
+    left: 95%;
+    font-size: 20px;
+    color: #ee9817;
+}
+.status-slider{
+    height: 15px;
+    width: 40px;
+    margin: auto;
+}
+.status-slide:hover{
+    cursor: pointer;
+}
+.slider-button-left{ 
+    position: absolute; 
+    top: 27px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: 1px solid #A0A9B1;
+    border-radius: 40px;    
+}
+.slider-button-left:hover{
+    cursor: pointer;
+    background: #ee6464;
+}
+.slider-button-right{ 
+    position: absolute; 
+    top: 27px;
+    left: 30px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: 1px solid #A0A9B1;
+    border-radius: 40px;    
+}
+.slider-button-right:hover{
+    cursor: pointer;
+    background: #64eeae;
+}
+.slider-background{
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    margin-top: 7px;
+    background: #00ff00;
+    border: 1px solid #A0A9B1;
+	border-radius: 6px;
+}
+.slider-background:hover{
+    cursor: pointer;
 }
 
 .settings-section{
@@ -399,4 +451,16 @@ ul.clear{
 .settings-input{
     width: 30%;
     border-radius: 3px;
+}
+.online-status{
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    left: 45px;
+    width: 15px;
+	height: 15px;
+	background: #ff0000;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
 }

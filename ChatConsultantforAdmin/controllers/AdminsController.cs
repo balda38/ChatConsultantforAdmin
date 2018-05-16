@@ -74,10 +74,8 @@ namespace ChatConsultantforAdmin.controllers
         [HttpPost]
         public JsonResult ChangeStatus(string login, bool status)
         {
-            JsonResult jsonMsg = Json("done");
-
             repository.ChangeStatus(login, status);
-            return jsonMsg;
+            return Json(repository.List().Where(x => x.login == login).FirstOrDefault().name);
         }
     }
 }
