@@ -19,9 +19,9 @@ namespace ChatConsultantforAdmin.models
         IEnumerable<Admin> List();
         void Save(Admin admin);
         bool Check(string login);
-        bool Enter(string login, string password);
+        string Enter(string login, string password);
         void Edit(Admin admin);
-        void ChangeStatus(string login, bool status);
+        bool ChangeStatus(string login, bool status);
     }
 
     public class AdminsRepository : IDisposable, AdmRepository
@@ -45,10 +45,14 @@ namespace ChatConsultantforAdmin.models
             else return true;
         }
 
-        public bool Enter(string login, string password)
+        public string Enter(string login, string password)
         {
-            if (db.Admins.Where(x => x.login == login && x.password == password).FirstOrDefault() != null) return true;
-            else return false;
+            if (db.Admins.Where(x => x.login == login && x.password == password && x.status != true).FirstOrDefault() != null) return "Успешный вход";
+            else
+            {
+                if (db.Admins.Where(x => x.login == login && x.password == password && x.status).FirstOrDefault().status == true) return "Данная учетная запись уже авторизована";
+                else return "Неправильное имя пользователя или пароль";
+            }
         }
 
         public void Edit(Admin settings)
@@ -84,10 +88,15 @@ namespace ChatConsultantforAdmin.models
             }
         }
 
-        public void ChangeStatus(string login, bool status)
+        public bool ChangeStatus(string login, bool status)
         {
-            db.Admins.Where(x => x.login == login).FirstOrDefault().status = status;
-            db.SaveChanges();
+            if (db.Admins.Where(x => x.login == login).FirstOrDefault().status != true || status != true)
+            {
+                db.Admins.Where(x => x.login == login).FirstOrDefault().status = status;
+                db.SaveChanges();
+                return true;
+            }
+            else return false;
         }
 
         protected void Dispose(bool disposing)

@@ -82,7 +82,10 @@ define(function () {
                 var sendQuery = function(){
                     $http.post('/Admins/ChangeStatus', { login: sessionStorage.getItem("adminLogin"), status: status }, config)
                         .then(function (response) {
-                            console.log("done");
+                            if(response.data == "Данная учетная запись уже авторизована"){
+                                window.alert(response.data);
+                                window.location.href = "/Admins/Index";
+                            }
                         }, function (error) {
                             console.log("Ошибка: " + error);
                         }); 
