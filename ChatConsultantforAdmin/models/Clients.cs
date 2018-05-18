@@ -15,5 +15,6 @@ namespace ChatConsultantforAdmin.models
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "hh:mm:ss dd.MM.yyyy", ApplyFormatInEditMode = true)]
         public DateTime last_message { get; set; }
+        public bool status { get; set; }
     }
 }

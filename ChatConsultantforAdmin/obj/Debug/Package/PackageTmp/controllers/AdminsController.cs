@@ -57,12 +57,7 @@ namespace ChatConsultantforAdmin.controllers
         [HttpGet]
         public JsonResult AdminEnter(string login, string password)
         {
-            JsonResult jsonMsg = Json("");
-
-            if (repository.Enter(login, password)) jsonMsg = Json("Успешный вход", JsonRequestBehavior.AllowGet);
-            else jsonMsg = Json("Неправильный логин или пароль", JsonRequestBehavior.AllowGet);
-
-            return jsonMsg;
+            return Json(repository.Enter(login, password), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -74,10 +69,8 @@ namespace ChatConsultantforAdmin.controllers
         [HttpPost]
         public JsonResult ChangeStatus(string login, bool status)
         {
-            JsonResult jsonMsg = Json("done");
-
-            repository.ChangeStatus(login, status);
-            return jsonMsg;
+            if (repository.ChangeStatus(login, status)) return Json(repository.List().Where(x => x.login == login).FirstOrDefault().name);
+            else return Json("Данная учетная запись уже авторизована");            
         }
     }
 }

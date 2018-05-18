@@ -14,7 +14,7 @@
     width: 600px;
     height: 50px;
     max-height: 150px;
-    font-family: 'Tinos', serif;
+    font-family: 'Roboto', sans-serif;
 }
 .video-background{
     width: 100%;
@@ -66,7 +66,10 @@
 	padding: .5em;
 	border: 1px solid #A0A9B1;
 	border-radius: 6px;
-	background: #D8D5D5;
+    background: #D8D5D5;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -o-transition: 0.2s;
 	transition: 0.2s;
 } 
 .popup-button:hover{ 
@@ -76,17 +79,23 @@
 }
 
 .dialog-column{
-    display: block;
-    width: 100%;
-    height: 710px;
+    position: absolute;
+    width: 20%;
+    top: 9px;
+    height: 749px;
     overflow: hidden;
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    -o-transition: 1s;
+    transition: 1s;
+    background-color: #fff;
 }
 .dialogs{
     list-style-type: none;
 	overflow: hidden;
 	margin-left: 0;
     padding-left: 0;
-    margin-top: -5px;
+    margin: auto;
 }
 .dialog-column-scroll{
     width: 100%;
@@ -184,6 +193,7 @@
     opacity: 0;
     font-size: 20px;
     padding: 15px;
+    color: #483f57;
 }
 .admin-message-date {
 	display: block;
@@ -191,7 +201,7 @@
 	margin: 10px;
     margin-top: 4px;
 	text-align: right; 
-	font-family: 'Tinos', serif;
+	font-family: 'Roboto', sans-serif;
     font-size: 11px;
     color: #A0A9B1;
 }
@@ -201,7 +211,7 @@
 	margin: 10px;
     margin-top: 4px;
 	text-align: left; 
-	font-family: 'Tinos', serif;
+	font-family: 'Roboto', sans-serif;
     font-size: 11px;
     color: #A0A9B1;
 }
@@ -209,16 +219,21 @@
 .chat-hint{
     position: absolute;
     top: 15%;
-    left: 40%;
+    left: 39%;
 }
 .chat-frame{		
-	box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: #fff;
     border-left: 1px solid #A0A9B1;
     position: absolute;
     left: 20%;
     top: 5px;
-    height: 750px;
-    width: 80%;    
+    height: 755px;
+    width: 80%;   
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    -o-transition: 1s;
+    transition: 1s;
 }
 .chat-with-user {
     opacity: 1;
@@ -239,7 +254,7 @@
 	border: 1px solid #A0A9B1;
 	margin: 4px;
 	resize: none;
-	font-family: 'Tinos', serif;
+	font-family: 'Roboto', sans-serif;
     opacity: 0;
 }
 .chat-window{
@@ -261,7 +276,7 @@
     margin-right: 100px;
     padding: 10px;
 	text-align: left;
-	font-family: 'Tinos', serif;
+	font-family: 'Roboto', sans-serif;
     background: #4DEFA9;
 	border: 1px solid #A0A9B1;
 	border-radius: 6px;
@@ -276,7 +291,7 @@
     margin-left: 100px;
     padding: 10px;
 	text-align: right; 
-	font-family: 'Tinos', serif;
+	font-family: 'Roboto', sans-serif;
 	background: #7397D4;
 	border: 1px solid #A0A9B1;
 	border-radius: 6px;
@@ -307,43 +322,64 @@ ul.clear{
     width: 100%;
     position: fixed;
     z-index: 2;
-    background: linear-gradient(to bottom right, #444643, #4994a1);
+    background: #483f57;
     height: 60px;
-    margin: 0px, 10px, 10px, 10px;
 }
 .header-title{
     position: absolute;
-    left: 3%;
+    width: 100px;
+    left: 44%;
+    margin-top: 15px;
     font-size: 26px;
-    font-style: italic;
-    color: #ee9817;
+    font-weight: bold;
+    color: #fff;
 }
 .header-title:hover{
     cursor: pointer;
 }
-.help-bar{
+.header-dialogs{
     position: absolute;
-    top: 15px;
-    left: 70%;
-    list-style-type: none;
-    margin: 0;
+    left: 15%;
+    margin-top: 20px;
+    font-size: 20px;
+    color: #fff;
 }
-.help-bar li{
-    display: inline;
-    margin-right: 10px;
-    font-size: 22px;
+.dialogs-arrow{
+    position: absolute;
+    left: 20%;
+    margin-top: 21px;
+    margin-left: 5px;
+    width: 24px;
+    height: 24px;
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    -o-transition: 1s;
+    transition: 1s;
+}
+.dialogs-arrow:hover{
+    cursor: pointer;
+}
+.admin-full-name{
+    position: absolute;
+    top: 20px;
+    left: 80%;
+    font-size: 20px;
+    color: #fff;
 }
 .circle-admin-avatar {
     position: absolute;
     top: 5px;
-    left: 94%;
+    left: 91%;
     width: 50px;
 	height: 50px;
 	background: #dcedf0;
 	-moz-border-radius: 40px;
 	-webkit-border-radius: 40px;
     border-radius: 40px;    
-    transition-duration: 300ms;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -o-transition: 300ms;
+    transition: 300ms;
 }
 .circle-admin-avatar:hover {
     cursor: pointer;
@@ -361,7 +397,7 @@ ul.clear{
 	border-radius: 6px;
     position: absolute;
     top: 80%;
-    right: 0;
+    left: 85%;
     opacity: 0;
     pointer-events: none;
     background: #FFF;
@@ -375,11 +411,59 @@ ul.clear{
     padding-bottom: 10px;
     font-size: 18px;
     transition-property: color;
-    transition-duration: 300ms;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -o-transition: 300ms;
+    transition: 300ms;
 }
 .admin-menu li:hover{
     cursor: pointer;
-    color: #ad6d0c;
+    color: #7f63ac;
+}
+.admin-status{
+    position: absolute;
+    top: 7px;
+    left: 95%;
+    font-size: 20px;
+    color: #fff;
+}
+.status-slider{
+    height: 15px;
+    width: 40px;
+    margin: auto;
+}
+.status-slide:hover{
+    cursor: pointer;
+}
+.slider-button{ 
+    position: absolute; 
+    top: 27px;
+    width: 20px;
+    height: 20px;
+    left: 7px;
+    background: #fff;
+    border: 1px solid #A0A9B1;
+    border-radius: 40px; 
+    -webkit-transition: 600ms;
+    -moz-transition: 600ms;
+    -o-transition: 600ms;
+    transition: 600ms;
+}
+.slider-button:hover{
+    cursor: pointer;
+    background: #a0a4d8;
+}
+.slider-background{
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    margin-top: 7px;
+    background: #00ff00;
+    border: 1px solid #A0A9B1;
+	border-radius: 6px;
+}
+.slider-background:hover{
+    cursor: pointer;
 }
 
 .settings-section{

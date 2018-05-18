@@ -128,3 +128,5 @@ F:\Users\aldui\Desktop\chat-consultant-4-admin\ChatConsultantforAdmin\bin\System
 F:\Users\aldui\Desktop\chat-consultant-4-admin\ChatConsultantforAdmin\obj\Debug\ChatConsultantforAdmin.dll
 F:\Users\aldui\Desktop\chat-consultant-4-admin\ChatConsultantforAdmin\obj\Debug\ChatConsultantforAdmin.pdb
 F:\Users\aldui\Desktop\chat-consultant-4-admin\ChatConsultantforAdmin\obj\Debug\ChatConsultantforAdmin.csprojResolveAssemblyReference.cache
+F:\Users\aldui\Desktop\chat-consultant-4-admin\ChatConsultantforAdmin\obj\Debug\ChatConsultantforAdmin.Migrations.InitializeMigration.resources
+F:\Users\aldui\Desktop\chat-consultant-4-admin\ChatConsultantforAdmin\obj\Debug\ChatConsultantforAdmin.csproj.GenerateResource.Cache

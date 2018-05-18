@@ -224,6 +224,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805181020528_InitializeMigration.cs" />
+    <Compile Include="Migrations\201805181020528_InitializeMigration.Designer.cs">
+      <DependentUpon>201805181020528_InitializeMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="models\Admin.cs" />
     <Compile Include="models\AdminContext.cs" />
     <Compile Include="models\Clients.cs" />
@@ -240,6 +245,11 @@
     <Folder Include="App_Data\" />
     <Folder Include="videos\" />
     <Folder Include="views\Default\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201805181020528_InitializeMigration.resx">
+      <DependentUpon>201805181020528_InitializeMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

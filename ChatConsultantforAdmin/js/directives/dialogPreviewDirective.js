@@ -57,7 +57,13 @@ define(function () {
                                     div.style.background = "linear-gradient(to bottom right, " + colors[clrId] + ", #e0d15d)"
 
                                     var div1 = document.createElement("div");
-                                    div1.setAttribute("class", "online-status");  
+                                    div1.setAttribute("class", "online-status"); 
+                                    if(item.status == false){
+                                        div1.style.background = "#ff0000";   
+                                    }
+                                    else{
+                                        div1.style.background = "#00ff00";   
+                                    };
 
                                     var span1 = document.createElement("span");       
                                     span1.setAttribute("class", "avatar-name");    
@@ -91,14 +97,20 @@ define(function () {
                                         });
                                     
                                 });  
-                                loaded = true;  
-                                list.childNodes[0].children[3].style.background = "#00ff15";                                 
+                                loaded = true;                              
                             }
                             else{
                                 response.data.forEach(function (item, i, arr) {
                                     var id = item.id - 1;
 
                                     var li = document.getElementById("preview" + id);
+
+                                    if(item.status == false){
+                                        list.childNodes[id].children[3].style.background = "#ff0000";   
+                                    }
+                                    else{
+                                        list.childNodes[id].children[3].style.background = "#00ff00";   
+                                    };
 
                                     $http.get('/Messages/GetMsgCount', { params: { client: item.name } }, config)
                                         .then(function (response) {
@@ -151,20 +163,25 @@ define(function () {
                     else return dateComponent;
                 }        
 
-                $scope.selectUser = function(userName, nID){                 
-                    selectUserFac.setUser(userName);
-                    selectUserFac.setStat("adm");
-                    
-                    for(var i = 0; i < list.childNodes.length; i++){
-                        if(list.childNodes[i].className != "news-user-dialog-preview"){
-                            list.childNodes[i].setAttribute("class", "user-dialog-preview");    
+                $scope.selectUser = function(userName, nID){
+                    if(list.childNodes[nID].children[3].style.background == "rgb(255, 0, 0)") {
+                        window.alert("Данный пользователь не в сети");
+                    }           
+                    else{
+                        selectUserFac.setUser(userName);
+                        selectUserFac.setStat("adm");
+                        
+                        for(var i = 0; i < list.childNodes.length; i++){
+                            if(list.childNodes[i].className != "news-user-dialog-preview"){
+                                list.childNodes[i].setAttribute("class", "user-dialog-preview");    
+                            }
                         }
-                    }
-                    
-                    document.getElementById("preview" + nID).setAttribute("class", "user-dialog-preview-selected");
-                    if(document.getElementById("newMsg" + nID)){
-                        document.getElementById("newMsg" + nID).remove(); 
-                    }                                        
+                        
+                        document.getElementById("preview" + nID).setAttribute("class", "user-dialog-preview-selected");
+                        if(document.getElementById("newMsg" + nID)){
+                            document.getElementById("newMsg" + nID).remove(); 
+                        }   
+                    }                                                          
                 }
 
                 $scope.$on('msgDateEvent', function () {             

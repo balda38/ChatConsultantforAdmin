@@ -12,24 +12,22 @@
 </head>
 <body class="main-body">
     <div class="header">
-        <p class="header-title" onclick="returnToDialogs()">ChatConsultant</p>
-        <ul class="help-bar">
-            <li><a>Помощь</a>
-            <li><a>Информация</a>     
-        </ul>   
+        <div onclick="hideDialogsPreview()">
+            <div class="header-dialogs">Диалоги</div><img src="../../images/arrow.png" id="arrow" class="dialogs-arrow">
+        </div>
+        <div class="header-title" onclick="returnToDialogs()">ChatConsultant</div>        
         <admin-avatar-directive></admin-avatar-directive>
     </div>
     <div class="page-body">       
-        <p style="font-size: 18px; font-weight: bold;">Пользователи:</p>
         <table style="width: 100%;" ng-app="chatConsultantForAdmin">
             <tr style="width: 100%;">
-                <th class="dialog-column">
+                <th id="dialogColumn" class="dialog-column">
                     <div class="dialog-column-scroll">
                         <dialog-preview-directive></dialog-preview-directive>
                     </div>          
                 </th>
-                <th style="width: 80%;">
-                    <div class="chat-frame">
+                <th id="msgColumn" style="width: 80%;">
+                    <div id="chatFrame" class="chat-frame">
                         <chat-directive></chat-directive>
                     </div>                    
                 </th>
@@ -40,7 +38,38 @@
 </html>
 
 <script>
+    var arrow = document.getElementById("arrow");
+    var dialogColumn = document.getElementById("dialogColumn");
+    var chatFrame = document.getElementById("chatFrame");
+    var arrowUp = true;
+    var timeout;
+
     function returnToDialogs() {
         window.location.href = '/Clients/Index';
+    }
+
+    function hideDialogsPreview() {
+        if (arrowUp) {
+            arrow.style.transform = 'rotate(' + 180 + 'deg)';
+            arrowUp = false;
+
+            dialogColumn.setAttribute("style", "height: 0;");
+
+            clearTimeout(timeout);
+            timeout = setTimeout(function () {
+                chatFrame.setAttribute("style", "width: 100%; left: 0; border-left: 0");
+            }, 1000);            
+        }
+        else {
+            arrow.style.transform = 'rotate(' + 0 + 'deg)';
+            arrowUp = true;
+
+            chatFrame.setAttribute("style", "width: 80%; left: 20%; border-left: 1px solid #A0A9B1");
+
+            clearTimeout(timeout);
+            timeout = setTimeout(function () {
+                dialogColumn.setAttribute("style", "height: 749px;");
+            }, 1000);  
+        }    
     }
 </script>

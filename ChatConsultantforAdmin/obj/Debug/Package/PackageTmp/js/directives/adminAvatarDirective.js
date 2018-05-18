@@ -6,7 +6,14 @@ define(function () {
         return {
             restrict: 'EACM',
             template:
+                "<div class='admin-full-name'>{{adminName}}</div>"+
                 "<div ng-click='openCloseMenu()' class='circle-admin-avatar'><span class='admin-name'>A</span></div>"+
+                "<div class='admin-status'>В сети"+
+                    "<div class='status-slider' ng-click='changeAdminStatus()'>"+
+                        "<div id='sliderButton' class='slider-button'></div>"+
+                        "<div id='sliderBG' class='slider-background'></div>"+
+                    "</div>"+
+                "</div>"+
                 "<ul id='contextMenu' class='admin-menu'>"+
                     "<li ng-click='goToSettings()'>Настройки"+
                     "<li ng-click='userExit()'>Выход"+
@@ -14,6 +21,9 @@ define(function () {
             scope: {},
             controller: function ($scope, $attrs, $http) {
                 var opacity = false;
+                var status = true;
+
+                $scope.adminName = sessionStorage.getItem("adminName");
 
                 $scope.openCloseMenu = function(){
                     var menu = document.getElementById("contextMenu");
@@ -50,6 +60,36 @@ define(function () {
                             console.log("Ошибка: " + error);
                         });                    
                 };
+
+                $scope.changeAdminStatus = function(){
+                    var btn = document.getElementById("sliderButton");
+                    var bg = document.getElementById("sliderBG");
+
+                    if(status){
+                        btn.setAttribute("style", "left: 30px");
+                        bg.style.backgroundColor = "#ff0000";
+                        status = false;
+                        sendQuery();
+                    }
+                    else{
+                        btn.setAttribute("style", "left: 7px");
+                        bg.style.backgroundColor = "#00ff00";
+                        status = true;
+                        sendQuery();
+                    }
+                }
+
+                var sendQuery = function(){
+                    $http.post('/Admins/ChangeStatus', { login: sessionStorage.getItem("adminLogin"), status: status }, config)
+                        .then(function (response) {
+                            if(response.data == "Данная учетная запись уже авторизована"){
+                                window.alert(response.data);
+                                window.location.href = "/Admins/Index";
+                            }
+                        }, function (error) {
+                            console.log("Ошибка: " + error);
+                        }); 
+                }
             },
             link: function (scope, element, attrs) {
             }

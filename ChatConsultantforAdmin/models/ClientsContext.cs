@@ -53,6 +53,8 @@ namespace ChatConsultantforAdmin.models
             var date = DateTime.Now;
             client.last_message = DateTime.Parse(date.ToString(), provider);
 
+            client.status = true;
+
             db.Clients.Add(client);
             db.SaveChanges();
         }

@@ -27,7 +27,7 @@ define(function () {
                 };
 
                 setInterval(function(){
-                    $http.get('/Clients/GetClients', { params: { admin: "admin1" } }, config)
+                    $http.get('/Clients/GetClients', { params: { admin: sessionStorage.getItem("adminLogin") } }, config)
                         .then(function (response) {  
                             if(response.data.length != list.childNodes.length){
                                 list.innerHTML = "";
@@ -58,6 +58,12 @@ define(function () {
 
                                     var div1 = document.createElement("div");
                                     div1.setAttribute("class", "online-status");  
+                                    if(item.status == false){
+                                        div1.style.background = "#ff0000";   
+                                    }
+                                    else{
+                                        div1.style.background = "#00ff00";   
+                                    };
 
                                     var span1 = document.createElement("span");       
                                     span1.setAttribute("class", "avatar-name");    
@@ -92,7 +98,7 @@ define(function () {
                                     
                                 });  
                                 loaded = true;  
-                                list.childNodes[0].children[3].style.background = "#00ff15";                                 
+                                list.childNodes[0].children[3].style.background = "#00ff00";                                 
                             }
                             else{
                                 response.data.forEach(function (item, i, arr) {
@@ -168,7 +174,7 @@ define(function () {
                 }
 
                 $scope.$on('msgDateEvent', function () {             
-                   $http.get('/Clients/GetClientID', { params: { name: selectUserFac.user, admin: "admin1" } }, config)                   
+                   $http.get('/Clients/GetClientID', { params: { name: selectUserFac.user, admin: sessionStorage.getItem("adminLogin") } }, config)                   
                         .then(function (response) {
                             var splt = document.getElementById("date" + response.data).innerHTML.split(" ");
                             var nDate = splt[3] + " " + splt[4];
