@@ -1,4 +1,4 @@
 'use strict';
 define(function () {
-    return angular.module('chatConsultantForAdmin', ['chatDirective', 'dialogPreviewDirective', 'selectUserFactory', 'loginDirective', 'adminAvatarDirective', 'settingsDirective']);
+    return angular.module('chatConsultantForAdmin', ['chatDirective', 'dialogPreviewDirective', 'selectUserFactory', 'loginDirective', 'headerDirective', 'settingsDirective']);
 });

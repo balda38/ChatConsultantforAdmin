@@ -130,3 +130,6 @@ F:\Users\aldui\Desktop\chat-consultant-4-admin\ChatConsultantforAdmin\obj\Debug\
 F:\Users\aldui\Desktop\chat-consultant-4-admin\ChatConsultantforAdmin\obj\Debug\ChatConsultantforAdmin.csprojResolveAssemblyReference.cache
 F:\Users\aldui\Desktop\chat-consultant-4-admin\ChatConsultantforAdmin\obj\Debug\ChatConsultantforAdmin.Migrations.InitializeMigration.resources
 F:\Users\aldui\Desktop\chat-consultant-4-admin\ChatConsultantforAdmin\obj\Debug\ChatConsultantforAdmin.csproj.GenerateResource.Cache
+F:\Users\aldui\Desktop\chat-consultant-4-admin\ChatConsultantforAdmin\obj\Debug\ChatConsultantforAdmin.Migrations.InitStatusTime.resources
+F:\Users\aldui\Desktop\chat-consultant-4-admin\ChatConsultantforAdmin\obj\Debug\ChatConsultantforAdmin.Migrations.InitClientsNewTable.resources
+F:\Users\aldui\Desktop\chat-consultant-4-admin\ChatConsultantforAdmin\obj\Debug\ChatConsultantforAdmin.Migrations.DropStatusTime.resources

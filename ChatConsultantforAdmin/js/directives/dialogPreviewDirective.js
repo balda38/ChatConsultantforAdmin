@@ -5,7 +5,7 @@ define(function () {
     directiveModule.directive('dialogPreviewDirective',  function (selectUserFac) {
         return {
             restrict: 'EACM',
-            template:				
+            template:			
                 "<ul id='list' class='dialogs'>"+
                 "</ul>",       
             scope: {
@@ -25,7 +25,7 @@ define(function () {
                     names: [],
                     counts: []
                 };
-
+                
                 setInterval(function(){
                     $http.get('/Clients/GetClients', { params: { admin: sessionStorage.getItem("adminLogin") } }, config)
                         .then(function (response) {  
@@ -206,7 +206,7 @@ define(function () {
                         }, function (error) {
                             console.log("Ошибка: " + error)
                         });                            
-                })  
+                });  
             },
             link: function (scope, element, attrs) {
                 
