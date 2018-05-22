@@ -39,7 +39,7 @@ define(function () {
                     headers: {
                         'Content-Type': 'application/json'
                     }
-                }                
+                }               
 
                 $http.get('/Admins/SettingsList', { params: { login: adminLogin } }, config)
                     .then(function (response) {

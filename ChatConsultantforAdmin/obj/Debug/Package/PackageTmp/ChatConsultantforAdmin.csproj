@@ -228,6 +228,18 @@
     <Compile Include="Migrations\201805181020528_InitializeMigration.Designer.cs">
       <DependentUpon>201805181020528_InitializeMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805212057569_InitStatusTimers.cs" />
+    <Compile Include="Migrations\201805212057569_InitStatusTimers.Designer.cs">
+      <DependentUpon>201805212057569_InitStatusTimers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805212059240_InitClientsNewTable.cs" />
+    <Compile Include="Migrations\201805212059240_InitClientsNewTable.Designer.cs">
+      <DependentUpon>201805212059240_InitClientsNewTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805212202311_DropStatusTime.cs" />
+    <Compile Include="Migrations\201805212202311_DropStatusTime.Designer.cs">
+      <DependentUpon>201805212202311_DropStatusTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="models\Admin.cs" />
     <Compile Include="models\AdminContext.cs" />
@@ -249,6 +261,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201805181020528_InitializeMigration.resx">
       <DependentUpon>201805181020528_InitializeMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805212057569_InitStatusTimers.resx">
+      <DependentUpon>201805212057569_InitStatusTimers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805212059240_InitClientsNewTable.resx">
+      <DependentUpon>201805212059240_InitClientsNewTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805212202311_DropStatusTime.resx">
+      <DependentUpon>201805212202311_DropStatusTime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

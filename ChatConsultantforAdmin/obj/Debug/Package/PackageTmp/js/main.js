@@ -7,13 +7,13 @@ require.config({
         'dialogPreviewDirective': 'directives/dialogPreviewDirective',
         'selectUserFactory': 'factories/selectUserFactory',
         'loginDirective': 'directives/loginDirective',
-        'adminAvatarDirective': 'directives/adminAvatarDirective',
+        'headerDirective': 'directives/headerDirective',
         'settingsDirective': 'directives/settingsDirective'
     },
 	
     shim: {
         'app': {
-            deps: ['angular', 'chatDirective', 'dialogPreviewDirective', 'selectUserFactory', 'loginDirective', 'adminAvatarDirective', 'settingsDirective']
+            deps: ['angular', 'chatDirective', 'dialogPreviewDirective', 'selectUserFactory', 'loginDirective', 'headerDirective', 'settingsDirective']
         },
         'chatDirective': {
             deps: ['angular']
@@ -27,7 +27,7 @@ require.config({
         'loginDirective': {
             deps: ['angular']
         },
-        'adminAvatarDirective': {
+        'headerDirective': {
             deps: ['angular']
         },
         'settingsDirective': {

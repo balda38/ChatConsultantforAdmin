@@ -1,11 +1,12 @@
 'use strict';
 define(function () {
-    var directiveModule = angular.module('adminAvatarDirective', []);
+    var directiveModule = angular.module('headerDirective', []);
 
-    directiveModule.directive('adminAvatarDirective', function () {
+    directiveModule.directive('headerDirective', function () {
         return {
             restrict: 'EACM',
             template:
+                "<p class='header-title' ng-click='returnToDialogs()'>ChatConsultant</p>"+
                 "<div class='admin-full-name'>{{adminName}}</div>"+
                 "<div ng-click='openCloseMenu()' class='circle-admin-avatar'><span class='admin-name'>A</span></div>"+
                 "<div class='admin-status'>В сети"+
@@ -19,11 +20,12 @@ define(function () {
                     "<li ng-click='userExit()'>Выход"+
                 "</ul>",
             scope: {},
-            controller: function ($scope, $attrs, $http) {
+            controller: function ($scope, $attrs, $http, $rootScope) {
                 var opacity = false;
                 var status = true;
 
                 $scope.adminName = sessionStorage.getItem("adminName");
+                var adminLogin = sessionStorage.getItem("adminLogin");
 
                 $scope.openCloseMenu = function(){
                     var menu = document.getElementById("contextMenu");
@@ -44,7 +46,9 @@ define(function () {
                     window.location.href = '/Admins/Edit';
                 };
 
-                var adminLogin = "topadmin";
+                $scope.returnToDialogs = function(){
+                    window.location.href = '/Clients/Index';
+                };
 
                 var config = {
                     headers: {
@@ -89,6 +93,24 @@ define(function () {
                         }, function (error) {
                             console.log("Ошибка: " + error);
                         }); 
+                }
+
+                $http.post('/Admins/ChangeStatus', { login: adminLogin, status: true }, config)
+                        .then(function (response) {
+                            
+                        }, function (error) {
+                            console.log("Ошибка: " + error);
+                        }); 
+
+                window.onbeforeunload = function(e){
+                    $http.post('/Admins/ChangeStatus', { login: adminLogin, status: false }, config)
+                        .then(function (response) {
+                            
+                        }, function (error) {
+                            console.log("Ошибка: " + error);
+                        }); 
+                
+                    $rootScope.$digest();                    
                 }
             },
             link: function (scope, element, attrs) {
