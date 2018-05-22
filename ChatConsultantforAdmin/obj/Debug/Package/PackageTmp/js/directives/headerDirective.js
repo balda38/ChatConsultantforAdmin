@@ -24,8 +24,24 @@ define(function () {
                 var opacity = false;
                 var status = true;
 
+                var btn = document.getElementById("sliderButton");
+                var bg = document.getElementById("sliderBG");
+
                 $scope.adminName = sessionStorage.getItem("adminName");
                 var adminLogin = sessionStorage.getItem("adminLogin");
+
+                if(sessionStorage.getItem("onlineStatus") == "1")
+                {
+                    btn.setAttribute("style", "left: 7px");
+                    bg.style.backgroundColor = "#00ff00";
+                    status = true;
+                }
+                if(sessionStorage.getItem("onlineStatus") == "2")
+                {
+                    btn.setAttribute("style", "left: 30px");
+                    bg.style.backgroundColor = "#ff0000";
+                    status = false;
+                }
 
                 $scope.openCloseMenu = function(){
                     var menu = document.getElementById("contextMenu");
@@ -65,20 +81,19 @@ define(function () {
                         });                    
                 };
 
-                $scope.changeAdminStatus = function(){
-                    var btn = document.getElementById("sliderButton");
-                    var bg = document.getElementById("sliderBG");
-
+                $scope.changeAdminStatus = function(){                   
                     if(status){
                         btn.setAttribute("style", "left: 30px");
                         bg.style.backgroundColor = "#ff0000";
                         status = false;
+                        sessionStorage.setItem("onlineStatus", "2");
                         sendQuery();
                     }
                     else{
                         btn.setAttribute("style", "left: 7px");
                         bg.style.backgroundColor = "#00ff00";
                         status = true;
+                        sessionStorage.setItem("onlineStatus", "1");
                         sendQuery();
                     }
                 }
@@ -95,7 +110,7 @@ define(function () {
                         }); 
                 }
 
-                $http.post('/Admins/ChangeStatus', { login: adminLogin, status: true }, config)
+                $http.post('/Admins/ChangeStatus', { login: adminLogin, status: status }, config)
                         .then(function (response) {
                             
                         }, function (error) {

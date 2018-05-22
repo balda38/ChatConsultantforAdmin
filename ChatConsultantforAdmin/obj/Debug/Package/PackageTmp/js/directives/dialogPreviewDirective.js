@@ -36,17 +36,9 @@ define(function () {
                                     var id = item.id - 1;
                                     
                                     var li = document.createElement("li"); 
-                                    if(loaded && (id == response.data.length)){
-                                        li.setAttribute("class", "news-user-dialog-preview"); 
-                                        var span =  document.createElement("span"); 
-                                        span.setAttribute("class", "new-message-alert");  
-                                        span.innerHTML = "Нов. сообщ.";
-                                        span.id = "newMsg" + id;
-                                        li.appendChild(span);
-                                    }
-                                    else{
-                                        li.setAttribute("class", "user-dialog-preview");  
-                                    }                                    
+                                    if(loaded && (id == response.data.length)) li.setAttribute("class", "news-user-dialog-preview"); 
+                                    else li.setAttribute("class", "user-dialog-preview");
+
                                     li.setAttribute("ng-click", "selectUser('" + item.name + "', " + id + ")");
                                     li.id = "preview" + id;
                                     li.name = "dialogPreview";
@@ -106,10 +98,10 @@ define(function () {
                                     var li = document.getElementById("preview" + id);
 
                                     if(item.status == false){
-                                        list.childNodes[id].children[3].style.background = "#ff0000";   
+                                        li.children[3].style.background = "#ff0000";   
                                     }
                                     else{
-                                        list.childNodes[id].children[3].style.background = "#00ff00";   
+                                        li.children[3].style.background = "#00ff00";   
                                     };
 
                                     $http.get('/Messages/GetMsgCount', { params: { client: item.name } }, config)
@@ -121,12 +113,6 @@ define(function () {
                                                 selectUserFac.setStat("clnt");
                                                 selectUserFac.setUser(item.name);
                                                 selectUserFac.setLastMessage(item.last_message);
-
-                                                var span =  document.createElement("span"); 
-                                                span.setAttribute("class", "new-message-alert");  
-                                                span.innerHTML = "Нов. сообщ.";
-                                                span.id = "newMsg" + id;
-                                                li.appendChild(span);
                                             }
                                         }, function (error) {
                                             console.log("Ошибка: " + error)
@@ -164,7 +150,9 @@ define(function () {
                 }        
 
                 $scope.selectUser = function(userName, nID){
-                    if(list.childNodes[nID].children[3].style.background == "rgb(255, 0, 0)") {
+                    var li = document.getElementById("preview" + nID);
+
+                    if(li.children[3].style.background == "rgb(255, 0, 0)") {
                         window.alert("Данный пользователь не в сети");
                     }           
                     else{
@@ -177,10 +165,7 @@ define(function () {
                             }
                         }
                         
-                        document.getElementById("preview" + nID).setAttribute("class", "user-dialog-preview-selected");
-                        if(document.getElementById("newMsg" + nID)){
-                            document.getElementById("newMsg" + nID).remove(); 
-                        }   
+                        document.getElementById("preview" + nID).setAttribute("class", "user-dialog-preview-selected");  
                     }                                                          
                 }
 

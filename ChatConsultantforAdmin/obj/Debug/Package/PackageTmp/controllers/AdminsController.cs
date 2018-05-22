@@ -72,5 +72,11 @@ namespace ChatConsultantforAdmin.controllers
             if (repository.ChangeStatus(login, status)) return Json(repository.List().Where(x => x.login == login).FirstOrDefault().name);
             else return Json("Данная учетная запись уже авторизована");            
         }
+
+        [HttpGet]
+        public JsonResult GetAdmin(string site)
+        {
+            return Json(repository.GetAdmin(site), JsonRequestBehavior.AllowGet);
+        }
     }
 }
