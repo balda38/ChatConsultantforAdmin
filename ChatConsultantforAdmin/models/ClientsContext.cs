@@ -20,6 +20,7 @@ namespace ChatConsultantforAdmin.models
         IEnumerable<Clients> List(string admin);
         void SetLastMsg(DialogsMessages msg, string role);
         void NewClient(Clients client);
+        void ChangeStatus(string name, bool status);
     }
 
     public class ClientsRepository : IDisposable, ClntRepository
@@ -56,6 +57,12 @@ namespace ChatConsultantforAdmin.models
             client.status = true;
 
             db.Clients.Add(client);
+            db.SaveChanges();
+        }
+
+        public void ChangeStatus(string name, bool status)
+        {
+            db.Clients.Where(x => x.name == name).FirstOrDefault().status = status;
             db.SaveChanges();
         }
 

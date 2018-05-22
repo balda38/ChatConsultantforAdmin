@@ -54,5 +54,12 @@ namespace ChatConsultantforAdmin.controllers
         {
             return Json(repository1.List(admin).Where(x => x.name == name).FirstOrDefault().id - 1, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public JsonResult ChangeStatus(string name, bool status)
+        {
+            repository1.ChangeStatus(name, status);
+            return Json("done");
+        }
     }
 }
