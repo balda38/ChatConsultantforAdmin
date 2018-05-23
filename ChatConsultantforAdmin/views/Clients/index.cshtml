@@ -18,17 +18,15 @@
         <header-directive></header-directive>
     </div>
     <div class="page-body">       
-        <table style="width: 100%;" ng-app="chatConsultantForAdmin">
-            <tr style="width: 100%;">
+        <table style="width: 100%; bottom: 0;" ng-app="chatConsultantForAdmin">
+            <tr>
                 <th id="dialogColumn" class="dialog-column">
                     <div class="dialog-column-scroll">
                         <dialog-preview-directive></dialog-preview-directive>
                     </div>          
                 </th>
-                <th id="msgColumn" style="width: 80%;">
-                    <div id="chatFrame" class="chat-frame">
-                        <chat-directive></chat-directive>
-                    </div>                    
+                <th id="msgColumn" class="chat-frame">
+                    <chat-directive></chat-directive>        
                 </th>
             </tr>        
         </table>
@@ -39,7 +37,7 @@
 <script>
     var arrow = document.getElementById("arrow");
     var dialogColumn = document.getElementById("dialogColumn");
-    var chatFrame = document.getElementById("chatFrame");
+    var chatFrame = document.getElementById("msgColumn");
     var arrowUp = true;
     var timeout;
 
@@ -67,7 +65,7 @@
 
             clearTimeout(timeout);
             timeout = setTimeout(function () {
-                dialogColumn.setAttribute("style", "height: 749px;");
+                dialogColumn.setAttribute("style", "height: 100%;");
             }, 1000);  
         }    
     }

@@ -100,7 +100,7 @@ define(function () {
                                             sessionStorage.setItem("adminName", response.data);
                                             sessionStorage.setItem("adminLogin", document.getElementById('login').value);
                                             window.location.href = '/Clients/Index?Admin=' + document.getElementById('login').value;
-                                        }, function (error) {
+                                        }, function (error) {                                            
                                             console.log("Ошибка: " + error);
                                         });                                    
                                 }
@@ -108,6 +108,7 @@ define(function () {
                                     window.alert(response.data);
                                 }                        
                             }, function (error) {
+                                window.alert("Неправильное имя пользователя или пароль");
                                 console.log("Ошибка: " + error);
                             });                
                     }   
@@ -139,8 +140,9 @@ define(function () {
                     
                     $http.post('/Admins/NewAdmin', { admin: newAdmin }, config)
                         .then(function (response) {
-                            if(response.data == "Учетная запись консультанта с таким логином уже существует"){
-                                window.alert(response.data);                                
+                            console.log(response.data)
+                            if(response.data == "Учетная запись администратора с таким именем уже существует"){
+                                window.alert(response.data); 
                             }
                             else{
                                 window.alert(response.data);

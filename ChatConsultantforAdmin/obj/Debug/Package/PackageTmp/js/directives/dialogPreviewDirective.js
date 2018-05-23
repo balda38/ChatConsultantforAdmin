@@ -36,11 +36,11 @@ define(function () {
                                     var id = item.id - 1;
                                     
                                     var li = document.createElement("li"); 
-                                    if(loaded && (id == response.data.length)) li.setAttribute("class", "news-user-dialog-preview"); 
+                                    li.id = "preview" + id;
+                                    if(loaded && (id == response.data[0].id - 1)) li.setAttribute("class", "news-user-dialog-preview");
                                     else li.setAttribute("class", "user-dialog-preview");
 
-                                    li.setAttribute("ng-click", "selectUser('" + item.name + "', " + id + ")");
-                                    li.id = "preview" + id;
+                                    li.setAttribute("ng-click", "selectUser('" + item.name + "', " + id + ")");                                    
                                     li.name = "dialogPreview";
                                     
                                     var div = document.createElement("div");
@@ -106,8 +106,11 @@ define(function () {
 
                                     $http.get('/Messages/GetMsgCount', { params: { client: item.name } }, config)
                                         .then(function (response) {
-                                            if(response.data != msgCounts.counts[msgCounts.names.indexOf(item.name)]){                                                
-                                                li.setAttribute("class", "news-user-dialog-preview");
+                                            if(response.data != msgCounts.counts[msgCounts.names.indexOf(item.name)]){ 
+                                                console.log(li.className)
+                                                if (li.className != "user-dialog-preview-selected" && li.className != "user-dialog-preview-selected ng-scope"){
+                                                    li.setAttribute("class", "news-user-dialog-preview");  
+                                                }
                                                 
                                                 msgCounts.counts[msgCounts.names.indexOf(item.name)]++;
                                                 selectUserFac.setStat("clnt");
@@ -156,8 +159,8 @@ define(function () {
                         window.alert("Данный пользователь не в сети");
                     }           
                     else{
-                        selectUserFac.setUser(userName);
                         selectUserFac.setStat("adm");
+                        selectUserFac.setUser(userName);
                         
                         for(var i = 0; i < list.childNodes.length; i++){
                             if(list.childNodes[i].className != "news-user-dialog-preview"){
@@ -178,7 +181,8 @@ define(function () {
                                                      
                                 var li = document.getElementById("preview" + response.data);
 
-                                if (li.className != "user-dialog-preview-selected"){
+                                console.log(li.className)
+                                if (li.className != "user-dialog-preview-selected" && li.className != "user-dialog-preview-selected ng-scope"){
                                     li.setAttribute("class", "news-user-dialog-preview");  
                                 }
 

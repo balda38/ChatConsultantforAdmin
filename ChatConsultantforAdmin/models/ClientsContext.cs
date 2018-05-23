@@ -19,17 +19,24 @@ namespace ChatConsultantforAdmin.models
     {
         IEnumerable<Clients> List(string admin);
         void SetLastMsg(DialogsMessages msg, string role);
-        void NewClient(Clients client);
+        void NewClient(string name, string admin, string site);
         void ChangeStatus(string name, bool status);
     }
 
     public class ClientsRepository : IDisposable, ClntRepository
     {
         private ClientsContext db = new ClientsContext();
+        AdmRepository repository1;
+
+        public ClientsRepository(AdmRepository repo1)
+        {
+            repository1 = repo1;
+        }
 
         public IEnumerable<Clients> List(string admin)
         {
-            return db.Clients.OrderByDescending(x => x.last_message).Where(x => x.admin == admin);
+            var site = repository1.List().Where(x => x.login == admin).FirstOrDefault().site;
+            return db.Clients.OrderByDescending(x => x.last_message).Where(x => x.admin == admin && x.site == site);
         }
 
         public void SetLastMsg(DialogsMessages msg, string role)
@@ -48,8 +55,13 @@ namespace ChatConsultantforAdmin.models
             db.SaveChanges();
         }
 
-        public void NewClient(Clients client)
-        {
+        public void NewClient(string name, string admin, string site)
+        {      
+            Clients client = new Clients();
+            client.name = name;
+            client.site = site;
+            client.admin = admin;
+
             CultureInfo provider = CultureInfo.GetCultureInfo("ru-RU");
             var date = DateTime.Now;
             client.last_message = DateTime.Parse(date.ToString(), provider);

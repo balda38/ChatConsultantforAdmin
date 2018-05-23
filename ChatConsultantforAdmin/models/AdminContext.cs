@@ -22,7 +22,7 @@ namespace ChatConsultantforAdmin.models
         string Enter(string login, string password);
         void Edit(Admin admin);
         bool ChangeStatus(string login, bool status);
-        string GetAdmin(string site);
+        Admin GetAdmin(string site);
     }
 
     public class AdminsRepository : IDisposable, AdmRepository
@@ -100,14 +100,14 @@ namespace ChatConsultantforAdmin.models
             else return false;
         }
 
-        public string GetAdmin(string site)
+        public Admin GetAdmin(string site)
         {
             var onlineAdmins = db.Admins.Where(x => x.status == true && x.site == site).ToList();
             int rnd;
             if (onlineAdmins.Count == 1) rnd = 0;
             else rnd = new Random().Next(onlineAdmins.Count);
 
-            return onlineAdmins[rnd].name.Split(' ')[0];
+            return onlineAdmins[rnd];
         }
 
         protected void Dispose(bool disposing)

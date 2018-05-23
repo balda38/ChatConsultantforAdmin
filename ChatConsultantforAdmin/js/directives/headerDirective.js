@@ -8,7 +8,7 @@ define(function () {
             template:
                 "<p class='header-title' ng-click='returnToDialogs()'>ChatConsultant</p>"+
                 "<div class='admin-full-name'>{{adminName}}</div>"+
-                "<div ng-click='openCloseMenu()' class='circle-admin-avatar'><span class='admin-name'>A</span></div>"+
+                "<div ng-click='openCloseMenu()' class='circle-admin-avatar'><span class='admin-name'>{{nameFirstChar}}</span></div>"+
                 "<div class='admin-status'>В сети"+
                     "<div class='status-slider' ng-click='changeAdminStatus()'>"+
                         "<div id='sliderButton' class='slider-button'></div>"+
@@ -29,6 +29,7 @@ define(function () {
 
                 $scope.adminName = sessionStorage.getItem("adminName");
                 var adminLogin = sessionStorage.getItem("adminLogin");
+                $scope.nameFirstChar = $scope.adminName.charAt(0);
 
                 if(sessionStorage.getItem("onlineStatus") == "1")
                 {

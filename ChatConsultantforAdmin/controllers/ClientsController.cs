@@ -27,25 +27,17 @@ namespace ChatConsultantforAdmin.controllers
         }
 
         [HttpPost]
-        public JsonResult NewClient(string name, string site)
+        public JsonResult NewClient(string name, string admin)
         {
-            var admins = repository2.List().Where(x => x.status == true);
-
-            Clients client = new Clients();
-            client.name = name;
-            client.site = site;
-
-            //Random rnd = new Random();
-            client.admin = "admin1";
-
-            repository1.NewClient(client);
+            var site = repository2.List().Where(x => x.login == admin).FirstOrDefault().site;
+            repository1.NewClient(name, admin, site);
 
             return Json("done");
         }
 
         [HttpGet]
         public JsonResult GetClients(string admin)
-        {
+        {            
             return Json(repository1.List(admin), JsonRequestBehavior.AllowGet);
         }
 
