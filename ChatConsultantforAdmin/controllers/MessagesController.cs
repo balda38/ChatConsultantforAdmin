@@ -58,7 +58,16 @@ namespace ChatConsultantforAdmin.controllers
         [HttpGet]
         public JsonResult GetLastAdminMessage(string client)
         {
-            return Json(repository1.List().Where(x => x.msgTo == client).Last().msgText, JsonRequestBehavior.AllowGet);
+            JsonResult jsonMsg = Json("late");
+
+            var lastMsg = repository1.List().Where(x => x.msgTo == client).Last();
+            CultureInfo provider = CultureInfo.GetCultureInfo("ru-RU");
+            var date = DateTime.Now;
+            date = DateTime.Parse(date.ToString(), provider).Subtract(new TimeSpan(0, 0, 6));
+
+            if(date.CompareTo(lastMsg.date) <= 0) jsonMsg = Json(repository1.List().Where(x => x.msgTo == client).Last().msgText, JsonRequestBehavior.AllowGet);
+
+            return jsonMsg;
         }
 
         [HttpGet]
